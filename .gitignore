@@ -61,9 +61,6 @@ typings/
 .env
 .env.test
 
-# code signing certificate
-code-signing-cert.p12
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
