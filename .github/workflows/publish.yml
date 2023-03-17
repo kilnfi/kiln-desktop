@@ -1,4 +1,4 @@
-name: build
+name: Publish
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
   publish_on_windows:
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
