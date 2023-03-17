@@ -28,8 +28,8 @@ We are waiting for an Apple certification...
 
 ### Bug report
 
-Open a [bug report issue](https://github.com/kilnfi/kiln-desktop/issues/new?template=bug_report.md), please put as much details as possible.
+Open a [bug report issue](https://github.com/kilnfi/kiln-desktop/issues/new?assignees=adrienfort&labels=bug%2Ctriage&template=bug_report.yml&title=%5BBug%5D%3A+), please put as much details as possible.
 
 ### Feature request
 
-Open a [feature request issue](https://github.com/kilnfi/kiln-desktop/issues/new?template=feature_request.md), please put as much details as possible.
+Open a [feature request issue](https://github.com/kilnfi/kiln-desktop/issues/new?assignees=adrienfort&labels=enhancement%2Ctriage&template=feature_request.yml&title=%5BFeature%5D%3A+), please put as much details as possible.
