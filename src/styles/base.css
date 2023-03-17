@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Fonts */
+  @font-face {
+    font-family: "Inter";
+    src: url("./fonts/Inter/Inter-VariableFont_slnt,wght.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+  }
+
+  /* Base styles */
+  a,
+  tr {
+    @apply transition ease-in duration-150;
+  }
+
+  /* Remove control on numbers input */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+
+  .text-subtitle-1 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .text-subtitle-2 {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  .text-subtitle-3 {
+    @apply font-mono;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  .text-body-1 {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+
+  .text-body-2 {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .text-body-3 {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .text-caption-1 {
+    @apply font-mono;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
+  .text-caption-2 {
+    @apply font-mono;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  .text-caption-3 {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .text-small-1 {
+    @apply font-mono;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+
+  .text-small-2 {
+    @apply font-mono;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+
+  .text-small-3 {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+  }
+
+  ul > li {
+    @apply mb-2;
+  }
+
+  label {
+    @apply mb-2 inline-block;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fade-in 150ms ease-in forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-modal {
+    animation: fade-in-modal 150ms ease-in forwards;
+  }
+
+  @keyframes fade-in-modal {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-success {
+    animation: scale 0.3s ease-in-out 0.9s both;
+  }
+
+  .animate-success-stroke {
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+
+  .animate-success-check {
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  }
+
+  @keyframes scale {
+    0%,
+    100% {
+      transform: none;
+    }
+
+    50% {
+      transform: scale3d(1.1, 1.1, 1);
+    }
+  }
+
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+}
