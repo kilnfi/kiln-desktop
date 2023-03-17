@@ -59,12 +59,12 @@ const InputsContextProvider = ({ children }: Props) => {
 	const updateInputs = (input: Input) => setInputs([...inputs.filter((i) => i.id !== input.id), input]);
 
 	useEffect(() => {
-		console.log(sdk);
+		// console.log(sdk);
 		if (save) saveSdk();
 	}, [sdk]);
 
 	useEffect(() => {
-		console.log(inputs);
+		// console.log(inputs);
 		if (save) saveInputs();
 	}, [inputs]);
 

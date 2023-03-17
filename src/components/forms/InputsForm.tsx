@@ -163,7 +163,7 @@ const InputsForm = () => {
 								try {
 									setIsProcessing(true);
 									const res = await window.services[lastSelectedOption!.functions.sdk](sdk, inputs);
-									console.log(res);
+									// console.log(res);
 									setResult(res);
 									setIsProcessing(false);
 								} catch (error) {
