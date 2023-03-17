@@ -19,8 +19,8 @@ const config: ForgeConfig = {
 			config: {
 				authors: 'Kiln',
 				description: 'Kiln Desktop',
-				certificateFile: './code-signing-cert.p12',
-				certificatePassword: process.env.CERTIFICATE_PASSWORD,
+				certificateFile: './sectigo_cert.p12',
+				certificatePassword: process.env.SECTIGO_CERT_PASSWORD,
 			},
 		},
 	],
@@ -28,7 +28,6 @@ const config: ForgeConfig = {
 		{
 			name: '@electron-forge/publisher-github',
 			config: {
-				authToken: '',
 				draft: true,
 				repository: {
 					owner: 'kilnfi',
