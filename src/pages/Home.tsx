@@ -16,7 +16,7 @@ const Home = () => (
 						<KilnLogoShort className="w-10 h-10" />
 						<div className="flex flex-col">
 							<p className="text-2xl font-bold">
-								<span className="text-primary">Kiln Connect Client</span>
+								<span className="text-primary">Kiln Desktop</span>
 							</p>
 							<p className="text-caption-3">A desktop app to use Kiln Connect</p>
 						</div>

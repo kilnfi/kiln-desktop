@@ -1,6 +1,6 @@
 {
-  "name": "kiln-connect-client",
-  "productName": "Kiln Connect Client",
+  "name": "kiln-desktop",
+  "productName": "Kiln Desktop",
   "version": "1.0.0",
   "description": "A desktop app to use Kiln Connect",
   "main": ".webpack/main",

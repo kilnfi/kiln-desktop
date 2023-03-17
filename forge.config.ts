@@ -18,7 +18,7 @@ const config: ForgeConfig = {
 			name: '@electron-forge/maker-squirrel',
 			config: {
 				authors: 'Kiln',
-				description: 'Kiln Connect Client',
+				description: 'Kiln Desktop',
 				certificateFile: './code-signing-cert.p12',
 				certificatePassword: process.env.CERTIFICATE_PASSWORD,
 			},

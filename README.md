@@ -1,12 +1,12 @@
-# Kiln Connect Client
+# Kiln Desktop 🚧 Early Access 🚧
 A desktop app to use Kiln Connect 🚀
 
-## Download
+## How to download ?
 
-### Windows
+### on Windows
 
-Go the [releases](https://github.com/kilnfi/kiln-connect-client/releases) and download the lastest windows version.
+Go the [releases](https://github.com/kilnfi/kiln-desktop/releases) and download the lastest windows version.
 
-### MacOS
+### on MacOS
 
-We are waiting for a certification from Apple...
+We are waiting for an Apple certification...
