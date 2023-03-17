@@ -6,9 +6,11 @@ import Select from '../ui/Select';
 import Textarea from '../ui/Textarea';
 import useOptions from '../../hooks/useOptions';
 import useInputs from '../../hooks/useInputs';
+import ResultModal from '../modals/ResultModal';
 
 const InputsForm = () => {
 	const [result, setResult] = useState<string | undefined>(undefined);
+	const [isResultOpen, setIsResultOpen] = useState<boolean>(false);
 	const [isProcessing, setIsProcessing] = useState<boolean>(false);
 	const [areInputsValid, setAreInputsValid] = useState<boolean>(false);
 
@@ -52,6 +54,10 @@ const InputsForm = () => {
 			setAreInputsValid(checkInputs());
 		}
 	}, [isLastAvailableOption, sdk, inputs]);
+
+	useEffect(() => {
+		if (result && !isProcessing) setIsResultOpen(true);
+	}, [result, isProcessing]);
 
 	return (
 		<>
@@ -190,10 +196,15 @@ const InputsForm = () => {
 							</>
 						)}
 					</Button>
-					<div className="flex flex-col space-y-2">
-						<p className="text-body-3 text-primary">Result</p>
-						<Textarea className="whitespace-pre max-h-[200px]" name="result" readOnly={true} value={result} />
-					</div>
+					<ResultModal
+						isOpen={isResultOpen}
+						onClose={() => {
+							setIsResultOpen(false);
+							setResult(undefined);
+						}}
+						title="Result"
+						result={result}
+					/>
 				</div>
 			)}
 		</>
