@@ -91,3 +91,6 @@ code-signing-cert.p12
 # Electron-Forge
 out/
 build/
+
+# Editor config
+.vscode
