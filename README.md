@@ -23,3 +23,13 @@ Go the [releases](https://github.com/kilnfi/kiln-desktop/releases) and download 
 ### on MacOS
 
 We are waiting for an Apple certification...
+
+## Give feedback :heart:
+
+### Bug report
+
+Open a [bug report issue](https://github.com/kilnfi/kiln-desktop/issues/new?template=bug_report.md), please put as much details as possible.
+
+### Feature request
+
+Open a [feature request issue](https://github.com/kilnfi/kiln-desktop/issues/new?template=feature_request.md), please put as much details as possible.
