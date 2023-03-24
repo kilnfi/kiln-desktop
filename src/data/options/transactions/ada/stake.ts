@@ -1,12 +1,12 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, integration, noteSignAndBroadcast, walletAddress } from '../common';
+import { accountId, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
 
 const stake: Option = {
 	id: OptionId.txAdaStake,
 	label: 'Stake',
 	type: OptionType.SDK,
 	note: {
-		sdk: `On Cardano, delegate your wallet balance in one transaction.
+		sdk: `First delegate your wallet balance in one transaction.
 
 ${noteSignAndBroadcast('Cardano')}`,
 		api: undefined,
@@ -44,15 +44,7 @@ const hash = await k.ada.broadcast(signed);`,
 			},
 			{
 				id: OptionInputId.adaOptions,
-				label: 'Options',
-				details: `Optional. Only for specific setups.
-
-Don't forget to:
-- put the key poolId between quotes.
-- not put a comma after its value.`,
-				placeholder: `{
-	"poolId": "..."
-}`,
+				...options(["poolId"]),
 				type: 'json',
 				required: false,
 			},

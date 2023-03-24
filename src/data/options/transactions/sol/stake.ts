@@ -1,5 +1,5 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, walletAddress } from '../common';
+import { accountId, amount, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
 
 const stake: Option = {
 	id: OptionId.txSolStake,
@@ -34,47 +34,37 @@ const hash = await k.sol.broadcast(signed);`,
 	},
 	inputs: {
 		sdk: [
-      {
-        id: OptionInputId.solAccountId,
-        ...accountId,
-        type: 'text',
-        required: true,
-      },
-      {
-        id: OptionInputId.solWalletAddress,
-        ...walletAddress('SOL'),
-        type: 'text',
-        required: true
-      },
-      {
-        id: OptionInputId.solStakeAmount,
-        ...amount('SOL', 'stake'),
-        type: 'number',
-        required: true,
-      },
-      {
-        id: OptionInputId.solOptions,
-        label: 'Options',
-        details: `Optional. Only for specific setups.
-
-Don't forget to:
-- put the keys voteAccountAddress and memo between quotes.
-- put a comma after the value of voteAccountAddress.
-- not put a comma after the value of memo.`,
-        placeholder: `{
-  "voteAccountAddress": "...",
-  "memo": "..."
-}`,
-        type: 'json',
-        required: false,
-      },
-      {
+			{
+				id: OptionInputId.solAccountId,
+				...accountId,
+				type: 'text',
+				required: true,
+			},
+			{
+				id: OptionInputId.solWalletAddress,
+				...walletAddress('SOL'),
+				type: 'text',
+				required: true,
+			},
+			{
+				id: OptionInputId.solStakeAmount,
+				...amount('SOL', 'stake'),
+				type: 'number',
+				required: true,
+			},
+			{
+				id: OptionInputId.solOptions,
+				...options(['voteAccountAddress', 'memo']),
+				type: 'json',
+				required: false,
+			},
+			{
 				id: OptionInputId.solIntegration,
 				...integration,
 				type: 'text',
 				required: true,
 			},
-    ],
+		],
 		api: undefined,
 	},
 	functions: {

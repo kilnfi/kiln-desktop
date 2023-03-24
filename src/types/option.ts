@@ -19,6 +19,16 @@ enum OptionId {
 	txAtomStake = 'tx-atom-stake',
 	txAtomUnstake = 'tx-atom-unstake',
 	txAtomGetStatus = 'tx-atom-get-status',
+	txDot = 'tx-dot',
+	txDotBond = 'tx-dot-bond',
+	txDotExtraBond = 'tx-dot-extra-bond',
+	txDotRebond = 'tx-dot-rebond',
+	txDotUnbond = 'tx-dot-unbond',
+	txDotNominate = 'tx-dot-nominate',
+	txDotWithdraw = 'tx-dot-withdraw',
+	txDotSetController = 'tx-dot-set-controller',
+	txDotSetPayee = 'tx-dot-set-payee',
+	txDotChill = 'tx-dot-chill',
 }
 
 enum OptionInputId {
@@ -54,6 +64,18 @@ enum OptionInputId {
 	atomWalletAddress = 'atom-wallet-address',
 	atomValidatorAddress = 'atom-validator-address',
 	atomOptions = 'atom-options',
+	dotAccountId = 'dot-account-id',
+	dotIntegration = 'dot-integration',
+	dotBondAmount = 'dot-bond-amount',
+	dotExtraBondAmount = 'dot-extra-bond-amount',
+	dotRebondAmount = 'dot-rebond-amount',
+	dotUnbondAmount = 'dot-unbond-amount',
+	dotWalletAddress = 'dot-wallet-address',
+	dotStashAccount = 'dot-stash-account',
+	dotControllerAccount = 'dot-controller-account',
+	dotNominateValidators = 'dot-nominate-validators',
+	dotRewardDestination = 'dot-reward-destination',
+	dotOptions = 'dot-options',
 }
 
 enum OptionFunctionSdk {
@@ -72,6 +94,15 @@ enum OptionFunctionSdk {
 	txAtomStake = 'tx-atom-stake-sdk',
 	txAtomUnstake = 'tx-atom-unstake-sdk',
 	txAtomGetStatus = 'tx-atom-get-status-sdk',
+	txDotBond = 'tx-dot-bond-sdk',
+	txDotExtraBond = 'tx-dot-extra-bond-sdk',
+	txDotRebond = 'tx-dot-rebond-sdk',
+	txDotUnbond = 'tx-dot-unbond-sdk',
+	txDotNominate = 'tx-dot-nominate-sdk',
+	txDotWithdraw = 'tx-dot-withdraw-sdk',
+	txDotSetController = 'tx-dot-set-controller-sdk',
+	txDotSetPayee = 'tx-dot-set-payee-sdk',
+	txDotChill = 'tx-dot-chill-sdk',
 }
 
 enum OptionFunctionApi {}

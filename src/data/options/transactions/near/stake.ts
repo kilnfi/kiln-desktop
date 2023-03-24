@@ -1,12 +1,12 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, walletAddress } from '../common';
+import { accountId, amount, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
 
 const stake: Option = {
 	id: OptionId.txNearStake,
 	label: 'Stake',
 	type: OptionType.SDK,
 	note: {
-		sdk: `First, create a staking transaction to delegate any amount of NEAR to a staking pool.
+		sdk: `First, craft a staking transaction to delegate any amount of NEAR to a staking pool.
 
 ${noteSignAndBroadcast('Near')}`,
 		api: undefined,
@@ -50,15 +50,7 @@ const hash = await k.near.broadcast(signed);`,
 			},
 			{
 				id: OptionInputId.nearOptions,
-				label: 'Options',
-				details: `Optional. Only for specific setups.
-
-Don't forget to:
-- put the key stakePoolId between quotes.
-- not put a comma after its value.`,
-				placeholder: `{
-	"stakePoolId": "..."
-}`,
+				...options(['stakePoolId']),
 				type: 'json',
 				required: false,
 			},

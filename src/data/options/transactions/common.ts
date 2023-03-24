@@ -57,4 +57,41 @@ const stakeAccountAddress = (type: 'Basic' | 'Source' | 'Destination' = 'Basic')
 	placeholder: 'xxx',
 });
 
-export { noteSignAndBroadcast, accountId, walletAddress, integration, transactionHash, amount, stakeAccountAddress };
+const options = (keys: string[], extraNotes: string[] = []) => ({
+	label: 'Options',
+	details: `Optional. Only for specific setups.
+
+${extraNotes.map((n) => `- ${n}.`).join('\n')}
+
+Don't forget to:
+- put the key${keys.length === 1 ? '' : 's'} (${keys.join(', ')}) between quotes.
+- not put a comma after the value of ${keys.at(-1)}.`,
+	placeholder: `{
+${keys.map((k) => `  "${k}": "..."`).join(',\n')}
+}`,
+});
+
+const stashAccount = {
+	label: 'Stash Account',
+	details: 'This is your wallet address.',
+	placeholder: 'xxx',
+};
+
+const controllerAccount = {
+	label: 'Controller Account',
+	details: "If you don't have a controller account, then select your stash address.",
+	placeholder: 'xxx',
+};
+
+export {
+	noteSignAndBroadcast,
+	accountId,
+	walletAddress,
+	integration,
+	transactionHash,
+	amount,
+	stakeAccountAddress,
+	options,
+	stashAccount,
+	controllerAccount,
+};

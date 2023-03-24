@@ -37,6 +37,24 @@ contextBridge.exposeInMainWorld('services', {
 		ipcRenderer.invoke(OptionFunctionSdk.txAtomUnstake, sdk, inputs),
 	[OptionFunctionSdk.txAtomGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
 		ipcRenderer.invoke(OptionFunctionSdk.txAtomGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txDotBond]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotBond, sdk, inputs),
+	[OptionFunctionSdk.txDotExtraBond]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotExtraBond, sdk, inputs),
+	[OptionFunctionSdk.txDotRebond]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotRebond, sdk, inputs),
+	[OptionFunctionSdk.txDotNominate]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotNominate, sdk, inputs),
+	[OptionFunctionSdk.txDotUnbond]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotUnbond, sdk, inputs),
+	[OptionFunctionSdk.txDotWithdraw]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotWithdraw, sdk, inputs),
+	[OptionFunctionSdk.txDotChill]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotChill, sdk, inputs),
+	[OptionFunctionSdk.txDotSetController]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotSetController, sdk, inputs),
+	[OptionFunctionSdk.txDotSetPayee]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txDotSetPayee, sdk, inputs),
 });
 
 contextBridge.exposeInMainWorld('utils', {
