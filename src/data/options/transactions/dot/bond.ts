@@ -1,5 +1,5 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
+import { accountId, amount, integration, noteSignAndBroadcast, options, stashAccount } from '../common';
 
 const bond: Option = {
 	id: OptionId.txDotBond,
@@ -19,7 +19,7 @@ const options = {
 }; 
 
 /* async craftBondTx(accountId: string, stashAccount: string, amountDot: number, options?: DotStakeOptions): Promise<DotTransaction> */
-const tx = await k.dot.craftBondTx(account.id, WALLET_PUBKEY, 42.2, options);
+const tx = await k.dot.craftBondTx(account.id, stashAccount, 42.2, options);
 
 /* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
 const signed = await k.dot.sign('vault-1', tx);
@@ -37,8 +37,8 @@ const hash = await k.dot.broadcast(signed);`,
 				required: true,
 			},
 			{
-				id: OptionInputId.dotWalletAddress,
-				...walletAddress('DOT'),
+				id: OptionInputId.dotStashAccount,
+				...stashAccount,
 				type: 'text',
 				required: true,
 			},

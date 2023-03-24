@@ -73,13 +73,14 @@ ${keys.map((k) => `  "${k}": "..."`).join(',\n')}
 
 const stashAccount = {
 	label: 'Stash Account',
-	details: 'This is your wallet address.',
+	details: `If you don't have a stash account, it is recommended to create one.
+If you don't want to, then select your wallet address.`,
 	placeholder: 'xxx',
 };
 
 const controllerAccount = {
 	label: 'Controller Account',
-	details: "If you don't have a controller account, then select your stash address.",
+	details: "If you don't have a controller account, then select your stash account.",
 	placeholder: 'xxx',
 };
 

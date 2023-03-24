@@ -70,7 +70,6 @@ enum OptionInputId {
 	dotExtraBondAmount = 'dot-extra-bond-amount',
 	dotRebondAmount = 'dot-rebond-amount',
 	dotUnbondAmount = 'dot-unbond-amount',
-	dotWalletAddress = 'dot-wallet-address',
 	dotStashAccount = 'dot-stash-account',
 	dotControllerAccount = 'dot-controller-account',
 	dotNominateValidators = 'dot-nominate-validators',

@@ -8,20 +8,20 @@ const bond = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
 	const accountId = searchInput(inputs, OptionInputId.dotAccountId) as string;
-	const walletAddress = searchInput(inputs, OptionInputId.dotWalletAddress) as string;
+	const stashAccount = searchInput(inputs, OptionInputId.dotStashAccount) as string;
 	const amountDot = searchInput(inputs, OptionInputId.dotBondAmount) as number;
 	const options = JSON.parse((searchInput(inputs, OptionInputId.dotOptions) || '{}') as string);
 	const integration = searchInput(inputs, OptionInputId.dotIntegration) as string;
 
 	logInfo('>>> DOT bond <<<');
 	logInfo(`Account ID: ${accountId}`);
-	logInfo(`Wallet Address: ${walletAddress}`);
+	logInfo(`Stash Account: ${stashAccount}`);
 	logInfo(`Amount in DOT: ${amountDot}`);
 	logInfo(`Options: ${options}`);
 	logInfo(`Integration: ${integration}`);
 
 	try {
-		const tx = await k.dot.craftBondTx(accountId, walletAddress, amountDot, options);
+		const tx = await k.dot.craftBondTx(accountId, stashAccount, amountDot, options);
 		const signedTx = await k.dot.sign(integration, tx);
 		const hash = await k.dot.broadcast(signedTx);
 		logSuccess('>>> DOT bond <<<');
