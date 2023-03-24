@@ -1,12 +1,12 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, walletAddress } from '../common';
+import { accountId, amount, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
 
 const stake: Option = {
 	id: OptionId.txAtomStake,
 	label: 'Stake',
 	type: OptionType.SDK,
 	note: {
-		sdk: `On Cosmos Hub, first delegate your wallet balance in one transaction.
+		sdk: `First delegate your wallet balance in one transaction.
 
 ${noteSignAndBroadcast('Cosmos Hub')}`,
 		api: undefined,
@@ -50,15 +50,7 @@ const hash = await k.atom.broadcast(signed);`,
 			},
 			{
 				id: OptionInputId.atomOptions,
-				label: 'Options',
-				details: `Optional. Only for specific setups.
-
-Don't forget to:
-- put the key validatorAddress between quotes.
-- not put a comma after its value.`,
-				placeholder: `{
-	"validatorAddress": "..."
-}`,
+				...options(["validatorAddress"]),
 				type: 'json',
 				required: false,
 			},

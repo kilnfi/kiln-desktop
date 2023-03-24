@@ -29,6 +29,15 @@ const optionFunctions = [
 	{ name: OptionFunctionSdk.txAtomStake, func: services.sdk.tx.atom.stake },
 	{ name: OptionFunctionSdk.txAtomUnstake, func: services.sdk.tx.atom.unstake },
 	{ name: OptionFunctionSdk.txAtomGetStatus, func: services.sdk.tx.atom.getStatus },
+	{ name: OptionFunctionSdk.txDotBond, func: services.sdk.tx.dot.bond },
+	{ name: OptionFunctionSdk.txDotExtraBond, func: services.sdk.tx.dot.extraBond },
+	{ name: OptionFunctionSdk.txDotRebond, func: services.sdk.tx.dot.rebond },
+	{ name: OptionFunctionSdk.txDotNominate, func: services.sdk.tx.dot.nominate },
+	{ name: OptionFunctionSdk.txDotUnbond, func: services.sdk.tx.dot.unbond },
+	{ name: OptionFunctionSdk.txDotWithdraw, func: services.sdk.tx.dot.withdraw },
+	{ name: OptionFunctionSdk.txDotChill, func: services.sdk.tx.dot.chill },
+	{ name: OptionFunctionSdk.txDotSetController, func: services.sdk.tx.dot.setController },
+	{ name: OptionFunctionSdk.txDotSetPayee, func: services.sdk.tx.dot.setPayee },
 ];
 
 optionFunctions.forEach((option) =>

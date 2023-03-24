@@ -114,13 +114,13 @@ const InputsForm = () => {
 							);
 						if (input.type === 'text-array')
 							return (
-								<Input
+								<Textarea
 									key={index.toString()}
 									name={input.id}
 									label={input.label}
 									details={input.details}
 									placeholder={input.placeholder}
-									type="text"
+									readOnly={false}
 									required={input.required}
 									onChange={(e) =>
 										updateInputs({
@@ -128,7 +128,7 @@ const InputsForm = () => {
 											value: e.target.value.split(input.separator),
 										})
 									}
-									value={(inputs.find((i) => i.id === input.id)?.value as string[]).join(input.separator)}
+									value={(inputs.find((i) => i.id === input.id)?.value as string[])?.join(input.separator)}
 								/>
 							);
 						if (input.type === 'json')
