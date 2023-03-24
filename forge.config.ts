@@ -10,17 +10,30 @@ const config: ForgeConfig = {
 	},
 	rebuildConfig: {},
 	makers: [
-		{
-			name: '@electron-forge/maker-dmg',
-			config: {},
-		},
+		// {
+		// 	name: '@electron-forge/maker-dmg',
+		// 	config: {},
+		// },
 		{
 			name: '@electron-forge/maker-squirrel',
 			config: {
 				authors: 'Kiln',
 				description: 'Kiln Desktop',
-				certificateFile: './code-signing-cert.p12',
-				certificatePassword: process.env.CERTIFICATE_PASSWORD,
+				certificateFile: './sectigo_cert.p12',
+				certificatePassword: process.env.SECTIGO_CERT_PASSWORD,
+			},
+		},
+	],
+	publishers: [
+		{
+			name: '@electron-forge/publisher-github',
+			config: {
+				draft: true,
+				repository: {
+					owner: 'kilnfi',
+					name: 'kiln-desktop',
+				},
+				prerelease: false,
 			},
 		},
 	],

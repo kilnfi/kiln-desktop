@@ -1,3 +1,4 @@
+require('update-electron-app')()
 import electron, { app, BrowserWindow, ipcMain } from 'electron';
 
 import services from './services';

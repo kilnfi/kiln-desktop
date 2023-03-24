@@ -1,14 +1,13 @@
 {
   "name": "kiln-desktop",
   "productName": "Kiln Desktop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A desktop app to use Kiln Connect",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "make-win": "electron-forge make --platform=win32",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
@@ -17,6 +16,7 @@
     "name": "Adrien Fort",
     "email": "adrien.fort@kiln.fi"
   },
+  "repository": "https://github.com/kilnfi/kiln-desktop",
   "license": "MIT",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.4",
@@ -26,6 +26,7 @@
     "@electron-forge/maker-squirrel": "^6.0.4",
     "@electron-forge/maker-zip": "^6.0.4",
     "@electron-forge/plugin-webpack": "^6.0.4",
+    "@electron-forge/publisher-github": "^6.0.5",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@types/react": "^18.0.27",
@@ -59,6 +60,7 @@
     "react-dom": "^18.2.0",
     "react-number-format": "^5.1.4",
     "react-syntax-highlighter": "^15.5.0",
-    "react-textarea-autosize": "^8.4.0"
+    "react-textarea-autosize": "^8.4.0",
+    "update-electron-app": "^2.0.1"
   }
 }

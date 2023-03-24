@@ -1,0 +1,28 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish_on_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Retrieve certificate and decode it to a file
+        env:
+          SECTIGO_CERT_BASE64: ${{ secrets.SECTIGO_CERT_BASE64 }}
+        run: |
+          echo $SECTIGO_CERT_BASE64 | base64 --decode > sectigo_cert.p12
+      - name: Publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SECTIGO_CERTIFICATE_PASSWORD: ${{ secrets.SECTIGO_CERT_PASSWORD }}
+        run: npm run publish
