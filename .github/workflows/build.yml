@@ -20,6 +20,7 @@ jobs:
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
         run: |
           security import ./apple-cert.p12 -P $CSC_KEY_PASSWORD
+          security set-key-partition-list -S apple-tool:,apple: -s -k keychainPass keychainName
       - name: electron mac os security identities
         run: security find-identity -v
       - name: install dependencies
