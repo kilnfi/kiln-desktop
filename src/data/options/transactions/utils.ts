@@ -105,7 +105,7 @@ ${extraNotes.map((n) => `- ${n}.`).join('\n')}
 
 Don't forget to:
 - put the key${keys.length === 1 ? '' : 's'} (${keys.join(', ')}) between quotes.
-- not put a comma after the value of ${keys.at(-1)} if it's a string.`,
+- not put a comma after the value of ${keys.at(-1)}.`,
 	placeholder: `{
 ${keys.map((k) => `  "${k}": "..."`).join(',\n')}
 }`,

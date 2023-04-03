@@ -181,8 +181,8 @@ export const usages: Record<OptionId, string> = {
 		[
 			`// optional, only for specific setups
 const options = {
-controllerAccount: '...';
-rewardDestination: '...';
+  controllerAccount: '...';
+  rewardDestination: '...';
 };`,
 			"const tx = await k.dot.craftBondTx('account_id', 'stash_account', 1, options);",
 		],
