@@ -4,18 +4,19 @@ import { Input } from '../../../../types/input';
 import { OptionInputId } from '../../../../types/option';
 import signAndBroadcast from './utils';
 
-const withdraw = async (sdk: Sdk, inputs: Input[]) => {
+const withdrawRewards = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
 	const params = {
-		controllerAccount: searchInput(inputs, OptionInputId.dotControllerAccountAddress) as string,
-		integration: searchInput(inputs, OptionInputId.dotIntegration) as string,
+		walletAddress: searchInput(inputs, OptionInputId.atomWalletAddress) as string,
+    validatorAddress: searchInput(inputs, OptionInputId.atomValidatorAddress) as string,
+		integration: searchInput(inputs, OptionInputId.atomIntegration) as string,
 	};
 
-	debugLog('DPT WITHDRAW', params);
+	debugLog('ATOM WITHDRAW REWARDS', params);
 
 	try {
-		const tx = await k.dot.craftWithdrawUnbondedTx(params.controllerAccount);
+		const tx = await k.atom.craftWithdrawRewardsTx(params.walletAddress, params.validatorAddress);
 		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
 		return JSON.stringify(hash, undefined, 4);
 	} catch (error) {
@@ -24,4 +25,4 @@ const withdraw = async (sdk: Sdk, inputs: Input[]) => {
 	}
 };
 
-export default withdraw;
+export default withdrawRewards;

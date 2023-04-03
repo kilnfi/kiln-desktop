@@ -4,19 +4,18 @@ import { Input } from '../../../../types/input';
 import { OptionInputId } from '../../../../types/option';
 import signAndBroadcast from './utils';
 
-const extraBond = async (sdk: Sdk, inputs: Input[]) => {
+const withdrawUnbonded = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
 	const params = {
-		stashAccount: searchInput(inputs, OptionInputId.dotStashAccountAddress) as string,
-		amountDot: searchInput(inputs, OptionInputId.dotExtraBondAmount) as number,
+		controllerAccount: searchInput(inputs, OptionInputId.dotControllerAccountAddress) as string,
 		integration: searchInput(inputs, OptionInputId.dotIntegration) as string,
 	};
 
-	debugLog('DOT EXTRA BOND', params);
+	debugLog('DOT WITHDRAW UNBONDED', params);
 
 	try {
-		const tx = await k.dot.craftBondExtraTx(params.stashAccount, params.amountDot);
+		const tx = await k.dot.craftWithdrawUnbondedTx(params.controllerAccount);
 		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
 		return JSON.stringify(hash, undefined, 4);
 	} catch (error) {
@@ -25,4 +24,4 @@ const extraBond = async (sdk: Sdk, inputs: Input[]) => {
 	}
 };
 
-export default extraBond;
+export default withdrawUnbonded;

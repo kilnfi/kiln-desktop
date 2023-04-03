@@ -1,16 +1,16 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
 import { inputs, labels, notes, usages } from '../config';
 
-const withdraw: Option = {
-	id: OptionId.txDotWithdraw,
-	label: labels[OptionId.txDotWithdraw],
+const withdrawUnbonded: Option = {
+	id: OptionId.txDotWithdrawUnbonded,
+	label: labels[OptionId.txDotWithdrawUnbonded],
 	type: OptionType.sdk,
 	note: {
-		sdk: notes[OptionId.txDotWithdraw],
+		sdk: notes[OptionId.txDotWithdrawUnbonded],
 		api: undefined,
 	},
 	usage: {
-		sdk: usages[OptionId.txDotWithdraw],
+		sdk: usages[OptionId.txDotWithdrawUnbonded],
 		api: undefined,
 	},
 	inputs: {
@@ -29,9 +29,9 @@ const withdraw: Option = {
 		api: undefined,
 	},
 	functions: {
-		sdk: OptionFunctionSdk.txDotWithdraw,
+		sdk: OptionFunctionSdk.txDotWithdrawUnbonded,
 		api: undefined,
 	},
 };
 
-export default withdraw;
+export default withdrawUnbonded;

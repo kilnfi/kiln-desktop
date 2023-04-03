@@ -17,9 +17,11 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 const optionFunctions = [
 	{ name: OptionFunctionSdk.txAdaStake, func: services.sdk.tx.ada.stake },
 	{ name: OptionFunctionSdk.txAdaUnstake, func: services.sdk.tx.ada.unstake },
+	{ name: OptionFunctionSdk.txAdaWithdrawRewards, func: services.sdk.tx.ada.withdrawRewards },
 	{ name: OptionFunctionSdk.txAdaGetStatus, func: services.sdk.tx.ada.getStatus },
 	{ name: OptionFunctionSdk.txNearStake, func: services.sdk.tx.near.stake },
 	{ name: OptionFunctionSdk.txNearUnstake, func: services.sdk.tx.near.unstake },
+	{ name: OptionFunctionSdk.txNearWithdraw, func: services.sdk.tx.near.withdraw },
 	{ name: OptionFunctionSdk.txNearGetStatus, func: services.sdk.tx.near.getStatus },
 	{ name: OptionFunctionSdk.txSolStake, func: services.sdk.tx.sol.stake },
 	{ name: OptionFunctionSdk.txSolDeactivate, func: services.sdk.tx.sol.deactivate },
@@ -29,16 +31,18 @@ const optionFunctions = [
 	{ name: OptionFunctionSdk.txSolGetStatus, func: services.sdk.tx.sol.getStatus },
 	{ name: OptionFunctionSdk.txAtomStake, func: services.sdk.tx.atom.stake },
 	{ name: OptionFunctionSdk.txAtomUnstake, func: services.sdk.tx.atom.unstake },
+	{ name: OptionFunctionSdk.txAtomWithdrawRewards, func: services.sdk.tx.atom.withdrawRewards },
 	{ name: OptionFunctionSdk.txAtomGetStatus, func: services.sdk.tx.atom.getStatus },
 	{ name: OptionFunctionSdk.txDotBond, func: services.sdk.tx.dot.bond },
-	{ name: OptionFunctionSdk.txDotExtraBond, func: services.sdk.tx.dot.extraBond },
+	{ name: OptionFunctionSdk.txDotBondExtra, func: services.sdk.tx.dot.bondExtra },
 	{ name: OptionFunctionSdk.txDotRebond, func: services.sdk.tx.dot.rebond },
 	{ name: OptionFunctionSdk.txDotNominate, func: services.sdk.tx.dot.nominate },
 	{ name: OptionFunctionSdk.txDotUnbond, func: services.sdk.tx.dot.unbond },
-	{ name: OptionFunctionSdk.txDotWithdraw, func: services.sdk.tx.dot.withdraw },
+	{ name: OptionFunctionSdk.txDotWithdrawUnbonded, func: services.sdk.tx.dot.withdrawUnbonded },
 	{ name: OptionFunctionSdk.txDotChill, func: services.sdk.tx.dot.chill },
 	{ name: OptionFunctionSdk.txDotSetController, func: services.sdk.tx.dot.setController },
 	{ name: OptionFunctionSdk.txDotSetPayee, func: services.sdk.tx.dot.setPayee },
+	{ name: OptionFunctionSdk.txDotGetStatus, func: services.sdk.tx.dot.getStatus },
 ];
 
 optionFunctions.forEach((option) =>

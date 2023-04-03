@@ -1,16 +1,16 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
 import { inputs, labels, notes, usages } from '../config';
 
-const extraBond: Option = {
-	id: OptionId.txDotExtraBond,
-	label: labels[OptionId.txDotExtraBond],
+const bondExtra: Option = {
+	id: OptionId.txDotBondExtra,
+	label: labels[OptionId.txDotBondExtra],
 	type: OptionType.sdk,
 	note: {
-		sdk: notes[OptionId.txDotExtraBond],
+		sdk: notes[OptionId.txDotBondExtra],
 		api: undefined,
 	},
 	usage: {
-		sdk: usages[OptionId.txDotExtraBond],
+		sdk: usages[OptionId.txDotBondExtra],
 		api: undefined,
 	},
 	inputs: {
@@ -21,8 +21,8 @@ const extraBond: Option = {
 				required: true,
 			},
 			{
-				id: OptionInputId.dotExtraBondAmount,
-				...inputs[OptionInputId.dotExtraBondAmount],
+				id: OptionInputId.dotBondExtraAmount,
+				...inputs[OptionInputId.dotBondExtraAmount],
 				required: true,
 			},
 			{
@@ -34,9 +34,9 @@ const extraBond: Option = {
 		api: undefined,
 	},
 	functions: {
-		sdk: OptionFunctionSdk.txDotExtraBond,
+		sdk: OptionFunctionSdk.txDotBondExtra,
 		api: undefined,
 	},
 };
 
-export default extraBond;
+export default bondExtra;

@@ -20,6 +20,11 @@ const getStatus: Option = {
 				...inputs[OptionInputId.dotTransactionHash],
 				required: true,
 			},
+			{
+				id: OptionInputId.dotBlockHash,
+				...inputs[OptionInputId.dotBlockHash],
+				required: true,
+			}
 		],
 		api: undefined,
 	},
