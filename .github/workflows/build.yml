@@ -29,6 +29,7 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          DEBUG: electron-download,extract-zip
         run: npm run make
       - name: upload artifact
         uses: actions/upload-artifact@v3
