@@ -24,7 +24,7 @@ const IntegrationModal = ({ isOpen, onClose, onSubmit, action, defaultIntegratio
 			integration.name === '' ||
 			integration.fireblocksApiKey === '' ||
 			integration.fireblocksSecretKey === '' ||
-			integration.vaultAccountId === ''
+			integration.vaultId === undefined
 		)
 			return false;
 		return true;
@@ -142,8 +142,9 @@ const IntegrationModal = ({ isOpen, onClose, onSubmit, action, defaultIntegratio
 					type="password"
 				/>
 				<Input
-					name="integration-vault-account-id"
-					label="Vault account ID"
+					name="integration-vault-id"
+					label="Vault ID"
+					type="number"
 					details={
 						<div>
 							<p className="text-xs">
@@ -164,8 +165,8 @@ const IntegrationModal = ({ isOpen, onClose, onSubmit, action, defaultIntegratio
 						</div>
 					}
 					placeholder="4"
-					value={integration.vaultAccountId}
-					onChange={(event) => setIntegration({ ...integration, vaultAccountId: event.target.value })}
+					value={integration.vaultId}
+					onChange={(value) => setIntegration({ ...integration, vaultId: value })}
 				/>
 				<Button
 					disabled={!isValid()}
