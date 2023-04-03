@@ -6,33 +6,33 @@ jobs:
   build_on_mac:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: retrieve certificate and decode it to a file
-      env:
-        CSC_LINK: ${{ secrets.CSC_LINK }}
-      run: |
-        echo $CSC_LINK | base64 --decode > apple-cert.p12
-    - name: add key to single keychain
-      env:
-        CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-      run: |
-        security import ./apple-cert.p12 -P $CSC_KEY_PASSWORD
-    - name: electron mac os security identities
-      run: security find-identity -v
-    - name: install dependencies
-      run: npm install
-    - name: build
-      env:
-        APPLE_ID: ${{ secrets.APPLE_ID }}
-        APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
-        APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-      run: npm run make
-    - name: upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: makes
-        path: out/make
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: retrieve certificate and decode it to a file
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+        run: |
+          echo $CSC_LINK | base64 --decode > apple-cert.p12
+      - name: add key to single keychain
+        env:
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+        run: |
+          security import ./apple-cert.p12 -P $CSC_KEY_PASSWORD
+      - name: electron mac os security identities
+        run: security find-identity -v
+      - name: install dependencies
+        run: npm install
+      - name: build
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: npm run make
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: makes
+          path: out/make
     
