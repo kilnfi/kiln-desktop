@@ -1,57 +1,38 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
+import { notes, usages, inputs, labels } from '../config';
 
 const stake: Option = {
 	id: OptionId.txAdaStake,
-	label: 'Stake',
-	type: OptionType.SDK,
+	label: labels[OptionId.txAdaStake],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First delegate your wallet balance in one transaction.
-
-${noteSignAndBroadcast('Cardano')}`,
+		sdk: notes[OptionId.txAdaStake],
 		api: undefined,
 	},
 	usage: {
-		sdk: `// optional, only for specific setups
-const options = {
-  // use an other pool than Kiln's
-  poolId: '...';
-};
-
-/* async craftStakeTx(accountId: string, walletAddress: string, options?: AdaStakeOptions): Promise<Transaction> */
-const tx = await k.ada.craftStakeTx(account.id, WALLET_PUBKEY, options);
-
-/* async sign(integration: string, transaction: Transaction): Promise<Transaction> */
-const signed = await k.ada.sign('vault-1', tx);
-
-/* async broadcast(transaction: Transaction): Promise<string | undefined> */
-const hash = await k.ada.broadcast(signed);`,
+		sdk: usages[OptionId.txAdaStake],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.adaAccountId,
-				...accountId,
-				type: 'text',
+				...inputs[OptionInputId.adaAccountId],
 				required: true,
 			},
 			{
 				id: OptionInputId.adaWalletAddress,
-				...walletAddress('ADA'),
-				type: 'text',
+				...inputs[OptionInputId.adaWalletAddress],
 				required: true,
 			},
 			{
-				id: OptionInputId.adaOptions,
-				...options(["poolId"]),
-				type: 'json',
-				required: false,
+				id: OptionInputId.adaStakePoolId,
+				...inputs[OptionInputId.adaStakePoolId],
+				required: true,
 			},
 			{
 				id: OptionInputId.adaIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.adaIntegration],
 				required: true,
 			},
 		],

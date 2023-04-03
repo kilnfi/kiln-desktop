@@ -1,45 +1,33 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { amount, controllerAccount, integration, noteSignAndBroadcast } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const unbond: Option = {
 	id: OptionId.txDotUnbond,
-	label: 'Unbond',
-	type: OptionType.SDK,
+	label: labels[OptionId.txDotUnbond],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First, craft a dot unbonding transaction. Note there is an unbonding period of 28 days before your tokens can be withdrawn.
-
-${noteSignAndBroadcast('Polkadot')}`,
+		sdk: notes[OptionId.txDotUnbond],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftUnbondTx(controllerAccount: string, amountDot: number): Promise<DotTransaction> */
-const tx = await k.dot.craftUnbondTx(controllerAccount, amountDot);
-
-/* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
-const signed = await k.dot.sign('vault-1', tx);
-
-/* async broadcast(transaction: SubmittableExtrinsic): Promise<SubmittedDotTransaction> */
-const hash = await k.dot.broadcast(signed);`,
+		sdk: usages[OptionId.txDotUnbond],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.dotControllerAccount,
-				...controllerAccount,
-				type: 'text',
+				id: OptionInputId.dotControllerAccountAddress,
+				...inputs[OptionInputId.dotControllerAccountAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotUnbondAmount,
-				...amount('DOT', 'rebond'),
-				type: 'number',
+				...inputs[OptionInputId.dotUnbondAmount],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.dotIntegration],
 				required: true,
 			},
 		],

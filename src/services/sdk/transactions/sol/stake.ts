@@ -1,34 +1,27 @@
-import { setupSdk, searchInput, logInfo, logSuccess, logError } from '../../utils';
-
+import { setupSdk, searchInput, debugLog } from '../../utils';
 import { Sdk } from '../../../../types/sdk';
 import { Input } from '../../../../types/input';
 import { OptionInputId } from '../../../../types/option';
+import signAndBroadcast from './utils';
 
 const stake = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
-	const accountId = searchInput(inputs, OptionInputId.solAccountId) as string;
-	const walletAddress = searchInput(inputs, OptionInputId.solWalletAddress) as string;
-	const amountSol = searchInput(inputs, OptionInputId.solStakeAmount) as number;
-	const options = JSON.parse((searchInput(inputs, OptionInputId.solOptions) || '{}') as string);
-	const integration = searchInput(inputs, OptionInputId.solIntegration) as string;
+	const params = {
+		accountId: searchInput(inputs, OptionInputId.solAccountId) as string,
+		walletAddress: searchInput(inputs, OptionInputId.solWalletAddress) as string,
+		voteAccount: searchInput(inputs, OptionInputId.solVoteAccountAddress) as string,
+		amountSol: searchInput(inputs, OptionInputId.solStakeAmount) as number,
+		integration: searchInput(inputs, OptionInputId.solIntegration) as string,
+	};
 
-	logInfo('>>> SOL stake <<<');
-	logInfo(`Account ID: ${accountId}`);
-	logInfo(`Wallet Address: ${walletAddress}`);
-	logInfo(`Amount in SOL: ${amountSol}`);
-	logInfo(`Options: ${options}`);
-	logInfo(`Integration: ${integration}`);
+	debugLog('SOL STAKE', params);
 
 	try {
-		const tx = await k.sol.craftStakeTx(accountId, walletAddress, amountSol, options);
-		const signedTx = await k.sol.sign(integration, tx);
-		const hash = await k.sol.broadcast(signedTx);
-		logSuccess('>>> SOL stake <<<');
-		console.log(hash);
+		const tx = await k.sol.craftStakeTx(params.accountId, params.walletAddress, params.voteAccount, params.amountSol);
+		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
 		return JSON.stringify(hash, undefined, 4);
 	} catch (error) {
-		logError('>>> SOL stake <<<');
 		console.error(error);
 		return error;
 	}

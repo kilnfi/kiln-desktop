@@ -1,4 +1,4 @@
-enum OptionId {
+export enum OptionId {
 	tx = 'tx',
 	txAda = 'tx-ada',
 	txAdaStake = 'tx-ada-stake',
@@ -29,14 +29,15 @@ enum OptionId {
 	txDotSetController = 'tx-dot-set-controller',
 	txDotSetPayee = 'tx-dot-set-payee',
 	txDotChill = 'tx-dot-chill',
+	txDotGetStatus = 'tx-dot-get-status',
 }
 
-enum OptionInputId {
+export enum OptionInputId {
 	adaAccountId = 'ada-account-id',
 	adaWalletAddress = 'ada-wallet-address',
 	adaTransactionHash = 'ada-transaction-hash',
+	adaStakePoolId = 'ada-stake-pool-id',
 	adaIntegration = 'ada-integration',
-	adaOptions = 'ada-options',
 	nearAccountId = 'near-account-id',
 	nearWalletAddress = 'near-wallet-address',
 	nearTransactionHash = 'near-transaction-hash',
@@ -44,18 +45,17 @@ enum OptionInputId {
 	nearStakeAmount = 'near-stake-amount',
 	nearUnstakeAmount = 'near-unstake-amount',
 	nearStakePoolId = 'near-stake-pool-id',
-	nearOptions = 'near-options',
 	solAccountId = 'sol-account-id',
 	solIntegration = 'sol-integration',
 	solWalletAddress = 'sol-wallet-address',
 	solTransactionHash = 'sol-transaction-hash',
+	solVoteAccountAddress = 'sol-vote-account-address',
 	solStakeAmount = 'sol-stake-amount',
 	solWithdrawAmount = 'sol-withdraw-amount',
 	solSplitAmount = 'sol-split-amount',
 	solStakeAccountAddress = 'sol-stake-account-address',
 	solStakeAccountSourceAddress = 'sol-stake-account-source-address',
 	solStakeAccountDestinationAddress = 'sol-stake-account-destination-address',
-	solOptions = 'sol-options',
 	atomAccountId = 'atom-account-id',
 	atomIntegration = 'atom-integration',
 	atomTransactionHash = 'atom-transaction-hash',
@@ -63,21 +63,21 @@ enum OptionInputId {
 	atomUnstakeAmount = 'atom-unstake-amount',
 	atomWalletAddress = 'atom-wallet-address',
 	atomValidatorAddress = 'atom-validator-address',
-	atomOptions = 'atom-options',
 	dotAccountId = 'dot-account-id',
 	dotIntegration = 'dot-integration',
+	dotTransactionHash = 'dot-transaction-hash',
 	dotBondAmount = 'dot-bond-amount',
 	dotExtraBondAmount = 'dot-extra-bond-amount',
 	dotRebondAmount = 'dot-rebond-amount',
 	dotUnbondAmount = 'dot-unbond-amount',
-	dotStashAccount = 'dot-stash-account',
-	dotControllerAccount = 'dot-controller-account',
-	dotNominateValidators = 'dot-nominate-validators',
+	dotStashAccountAddress = 'dot-stash-account-address',
+	dotControllerAccountAddress = 'dot-controller-account-address',
+	dotNominatedValidatorsAddresses = 'dot-nominated-validators-addresses',
 	dotRewardDestination = 'dot-reward-destination',
 	dotOptions = 'dot-options',
 }
 
-enum OptionFunctionSdk {
+export enum OptionFunctionSdk {
 	txAdaStake = 'tx-ada-stake-sdk',
 	txAdaUnstake = 'tx-ada-unstake-sdk',
 	txAdaGetStatus = 'tx-ada-get-status-sdk',
@@ -102,28 +102,36 @@ enum OptionFunctionSdk {
 	txDotSetController = 'tx-dot-set-controller-sdk',
 	txDotSetPayee = 'tx-dot-set-payee-sdk',
 	txDotChill = 'tx-dot-chill-sdk',
+	txDotGetStatus = 'tx-dot-get-status-sdk',
 }
 
-enum OptionFunctionApi {}
+export enum OptionFunctionApi {}
 
-enum OptionType {
-	NONE,
-	SDK,
-	API,
-	BOTH,
+export enum OptionType {
+	none,
+	sdk,
+	api,
+	both,
 }
 
-type OptionInput = {
+export enum OptionInputType {
+	number,
+	text,
+	textArray,
+	json,
+};
+
+export type OptionInput = {
 	id: OptionInputId;
 	label: string;
 	details: string;
 	placeholder: string;
 	required: boolean;
-	type: 'number' | 'text' | 'text-array' | 'json';
+	type: OptionInputType;
 	separator?: string;
 };
 
-type Option = {
+export type Option = {
 	id: OptionId;
 	label: string;
 	type?: OptionType;
@@ -145,5 +153,3 @@ type Option = {
 		api?: OptionFunctionApi;
 	};
 };
-
-export { Option, OptionId, OptionType, OptionInput, OptionInputId, OptionFunctionSdk, OptionFunctionApi };

@@ -1,52 +1,33 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { controllerAccount, integration, noteSignAndBroadcast } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const setPayee: Option = {
 	id: OptionId.txDotSetPayee,
-	label: 'Set Payee',
-	type: OptionType.SDK,
+	label: labels[OptionId.txDotSetPayee],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First, craft a dot set reward destination transaction that updates the destination rewards address for the given stash account.
-
-${noteSignAndBroadcast('Polkadot')}`,
+		sdk: notes[OptionId.txDotSetPayee],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftSetPayeeTx(controllerAccount: string, rewardsDestination: RewardDestination): Promise<DotTransaction> */
-const tx = await k.dot.craftSetPayeeTx(controllerAccount, rewardsDestination);
-
-/* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
-const signed = await k.dot.sign('vault-1', tx);
-
-/* async broadcast(transaction: SubmittableExtrinsic): Promise<SubmittedDotTransaction> */
-const hash = await k.dot.broadcast(signed);`,
+		sdk: usages[OptionId.txDotSetPayee],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.dotControllerAccount,
-				...controllerAccount,
-				type: 'text',
+				id: OptionInputId.dotControllerAccountAddress,
+				...inputs[OptionInputId.dotControllerAccountAddress],
 				required: true,
 			},
       {
         id: OptionInputId.dotRewardDestination,
-        label: 'Rewards Destination',
-        placeholder: 'Staked',
-        details: `This can be either "Staked", "Stash", "Controller" or any other account address.
-
-- "Staked": Rewards are paid into the stash account, increasing the amount at stake accordingly.
-- "Stash": Rewards are paid into the stash account, not increasing the amount at stake.
-- "Controller": Rewards are paid into the controller account.
-- Custom account address: Rewards are paid into the custom account address.`,
-        type: 'text',
+        ...inputs[OptionInputId.dotRewardDestination],
         required: true,
       },
 			{
 				id: OptionInputId.dotIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.dotIntegration],
 				required: true,
 			},
 		],

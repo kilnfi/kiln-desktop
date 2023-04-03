@@ -1,45 +1,33 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { amount, integration, noteSignAndBroadcast, stashAccount } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const extraBond: Option = {
 	id: OptionId.txDotExtraBond,
-	label: 'Extra Bond',
-	type: OptionType.SDK,
+	label: labels[OptionId.txDotExtraBond],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First, craft dot bonding extra token transaction (to be used if you already bonded tokens).
-
-${noteSignAndBroadcast('Polkadot')}`,
+		sdk: notes[OptionId.txDotExtraBond],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftBondExtraTx(stashAccount: string, amountDot: number): Promise<DotTransaction> */
-const tx = await k.dot.craftBondExtraTx(stashAccount, 2.4);
-
-/* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
-const signed = await k.dot.sign('vault-1', tx);
-
-/* async broadcast(transaction: SubmittableExtrinsic): Promise<SubmittedDotTransaction> */
-const hash = await k.dot.broadcast(signed);`,
+		sdk: usages[OptionId.txDotExtraBond],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.dotStashAccount,
-				...stashAccount,
-				type: 'text',
+				id: OptionInputId.dotStashAccountAddress,
+				...inputs[OptionInputId.dotStashAccountAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotExtraBondAmount,
-				...amount('DOT', 'extra bond'),
-				type: 'number',
+				...inputs[OptionInputId.dotExtraBondAmount],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.dotIntegration],
 				required: true,
 			},
 		],

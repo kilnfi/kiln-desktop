@@ -1,54 +1,38 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, walletAddress } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const unstake: Option = {
 	id: OptionId.txAtomUnstake,
-	label: 'Unstake',
-	type: OptionType.SDK,
+	label: labels[OptionId.txAtomUnstake],
+	type: OptionType.sdk,
 	note: {
-		sdk: `Unstake any amount of token you stake on a validator in one transaction.
-
-${noteSignAndBroadcast('Cosmos Hub')}`,
+		sdk: notes[OptionId.txAtomUnstake],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftUnstakeTx(walletAddress: string, validatorAddress: string, amountAtom?: number): Promise<AtomTx> */
-const tx = await k.atom.craftUnstakeTx(WALLET_PUBKEY, validatorAddress, 2.1);
-
-/* async sign(integration: string, transaction: AtomTx): Promise<TxRaw> */
-const signed = await k.atom.sign('vault-1', tx);
-
-/* async broadcast(transaction: TxRaw): Promise<string | undefined> */
-const hash = await k.atom.broadcast(signed);`,
+		sdk: usages[OptionId.txAtomUnstake],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.atomWalletAddress,
-				...walletAddress('ATOM'),
-				type: 'text',
+				...inputs[OptionInputId.atomWalletAddress],
 				required: true,
 			},
-      {
+			{
 				id: OptionInputId.atomValidatorAddress,
-				label: 'Validator Address',
-				details: `Validator address you want to unstake from.
-Kiln's validator address is cosmosvaloper1uxlf7mvr8nep3gm7udf2u9remms2jyjqvwdul2.`,
-				placeholder: 'cosmosvaloper1uxlf7mvr8nep3gm7udf2u9remms2jyjqvwdul2',
-				type: 'text',
+				...inputs[OptionInputId.atomValidatorAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.atomUnstakeAmount,
-				...amount('ATOM', 'unstake', 'If empty, the whole stake will be unstaked.', false),
-				type: 'number',
+				...inputs[OptionInputId.atomUnstakeAmount],
 				required: false,
 			},
 			{
 				id: OptionInputId.atomIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.atomIntegration],
 				required: true,
 			},
 		],

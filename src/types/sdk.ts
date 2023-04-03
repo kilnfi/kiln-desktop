@@ -3,22 +3,13 @@ type SdkIntegration = {
 	provider: 'fireblocks';
 	fireblocksApiKey: string;
 	fireblocksSecretKey: string;
-	vaultAccountId: string;
-};
-
-type SdkRpcs = {
-	ethereum?: string;
-	atom?: string;
-	dot?: string;
-	near?: string;
-	solana?: string;
+	vaultId: number;
 };
 
 type Sdk = {
 	testnet: boolean;
 	apiToken: string;
 	integrations: SdkIntegration[];
-	rpcs: SdkRpcs;
 };
 
-export type { SdkIntegration, SdkRpcs, Sdk };
+export type { SdkIntegration, Sdk };

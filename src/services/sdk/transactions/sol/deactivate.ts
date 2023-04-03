@@ -1,30 +1,25 @@
-import { setupSdk, searchInput, logInfo, logSuccess, logError } from '../../utils';
-
+import { setupSdk, searchInput, debugLog } from '../../utils';
 import { Sdk } from '../../../../types/sdk';
 import { Input } from '../../../../types/input';
 import { OptionInputId } from '../../../../types/option';
+import signAndBroadcast from './utils';
 
 const deactivate = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
-	const stakeAccountAddress = searchInput(inputs, OptionInputId.solStakeAccountAddress) as string;
-	const walletAddress = searchInput(inputs, OptionInputId.solWalletAddress) as string;
-	const integration = searchInput(inputs, OptionInputId.solIntegration) as string;
+	const params = {
+		stakeAccountAddress: searchInput(inputs, OptionInputId.solStakeAccountAddress) as string,
+		walletAddress: searchInput(inputs, OptionInputId.solWalletAddress) as string,
+		integration: searchInput(inputs, OptionInputId.solIntegration) as string,
+	};
 
-	logInfo('>>> SOL deactivate <<<');
-	logInfo(`Stake Account Address: ${stakeAccountAddress}`);
-	logInfo(`Wallet Address: ${walletAddress}`);
-	logInfo(`Integration: ${integration}`);
+	debugLog('SOL DEACTIVATE', params);
 
 	try {
-		const tx = await k.sol.craftDeactivateStakeTx(stakeAccountAddress, walletAddress);
-		const signedTx = await k.sol.sign(integration, tx);
-		const hash = await k.sol.broadcast(signedTx);
-		logSuccess('>>> SOL deactivate <<<');
-		console.log(hash);
+		const tx = await k.sol.craftDeactivateStakeTx(params.stakeAccountAddress, params.walletAddress);
+		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
 		return JSON.stringify(hash, undefined, 4);
 	} catch (error) {
-		logError('>>> SOL deactivate <<<');
 		console.error(error);
 		return error;
 	}

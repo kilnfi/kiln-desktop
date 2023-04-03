@@ -2,29 +2,29 @@ import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '
 import { inputs, labels, notes, usages } from '../config';
 
 const getStatus: Option = {
-	id: OptionId.txAdaGetStatus,
-	label: labels[OptionId.txAdaGetStatus],
+	id: OptionId.txDotGetStatus,
+	label: labels[OptionId.txDotGetStatus],
 	type: OptionType.sdk,
 	note: {
-		sdk: notes[OptionId.txAdaGetStatus],
+		sdk: notes[OptionId.txDotGetStatus],
 		api: undefined,
 	},
 	usage: {
-		sdk: usages[OptionId.txAdaGetStatus],
+		sdk: usages[OptionId.txDotGetStatus],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.adaTransactionHash,
-				...inputs[OptionInputId.adaTransactionHash],
+				id: OptionInputId.dotTransactionHash,
+				...inputs[OptionInputId.dotTransactionHash],
 				required: true,
 			},
 		],
 		api: undefined,
 	},
 	functions: {
-		sdk: OptionFunctionSdk.txAdaGetStatus,
+		sdk: OptionFunctionSdk.txDotGetStatus,
 		api: undefined,
 	},
 };

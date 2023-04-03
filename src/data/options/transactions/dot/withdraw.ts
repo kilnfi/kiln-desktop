@@ -1,39 +1,28 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { controllerAccount, integration, noteSignAndBroadcast } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const withdraw: Option = {
 	id: OptionId.txDotWithdraw,
-	label: 'Withdraw',
-	type: OptionType.SDK,
+	label: labels[OptionId.txDotWithdraw],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First, craft a dot withdraw unbonded token transaction.
-
-${noteSignAndBroadcast('Polkadot')}`,
+		sdk: notes[OptionId.txDotWithdraw],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftWithdrawUnbondedTx(controllerAccount: string): Promise<DotTransaction> */
-const tx = await k.dot.craftWithdrawUnbondedTx(controllerAccount);
-
-/* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
-const signed = await k.dot.sign('vault-1', tx);
-
-/* async broadcast(transaction: SubmittableExtrinsic): Promise<SubmittedDotTransaction> */
-const hash = await k.dot.broadcast(signed);`,
+		sdk: usages[OptionId.txDotWithdraw],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.dotControllerAccount,
-				...controllerAccount,
-				type: 'text',
+				id: OptionInputId.dotControllerAccountAddress,
+				...inputs[OptionInputId.dotControllerAccountAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.dotIntegration],
 				required: true,
 			},
 		],
