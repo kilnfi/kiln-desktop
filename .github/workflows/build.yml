@@ -16,10 +16,8 @@ jobs:
       run: |
         echo $CSC_LINK | base64 --decode > apple-cert.p12
     - name: add key to single keychain
-      env:
-        CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
       run: |
-        security import ./apple-cert.p12 -P $CSC_KEY_PASSWORD
+        security import ./apple-cert.p12 -P ${{ secrets.CSC_KEY_PASSWORD }}
     - name: electron mac os security identities
       run: security find-identity -v
     - name: install dependencies
