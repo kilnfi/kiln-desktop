@@ -19,8 +19,12 @@ jobs:
         env:
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
         run: |
-          security import ./apple-cert.p12 -P $CSC_KEY_PASSWORD
-          security set-key-partition-list -S apple-tool:,apple: -s -k keychainPass keychainName
+          security create-keychain -p password buildagent.keychain
+          security unlock-keychain -p password buildagent.keychain
+          security list-keychains -d user -s buildagent.keychain
+          security default-keychain -s buildagent.keychain
+          security import ./apple-cert.p12 -k buildagent.keychain -P $CSC_KEY_PASSWORD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k password buildagent.keychain
       - name: electron mac os security identities
         run: security find-identity -v
       - name: install dependencies
@@ -30,7 +34,7 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          DEBUG: electron-packager,@electron/osx-sign
+          DEBUG: electron-packager,electron-osx-sign
         run: npm run make
       - name: upload artifact
         uses: actions/upload-artifact@v3
