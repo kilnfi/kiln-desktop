@@ -7,13 +7,24 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
 	packagerConfig: {
 		icon: './images/icon',
+		osxSign: {}, // object must exist even if empty
+		osxNotarize: {
+			tool: 'notarytool',
+			appleId: process.env.APPLE_ID!,
+			appleIdPassword: process.env.APPLE_PASSWORD!,
+			teamId: process.env.APPLE_TEAM_ID!,
+		},
 	},
 	rebuildConfig: {},
 	makers: [
-		// {
-		// 	name: '@electron-forge/maker-dmg',
-		// 	config: {},
-		// },
+		{
+			name: '@electron-forge/maker-dmg',
+			config: {
+				icon: './images/icon.png',
+				name: 'Kiln Desktop',
+				overwrite: true,
+			},
+		},
 		{
 			name: '@electron-forge/maker-squirrel',
 			config: {
