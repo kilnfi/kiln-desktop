@@ -1,25 +1,28 @@
 import { Option, OptionId, OptionInputId, OptionType, OptionFunctionSdk } from '../../../../types/option';
-import { transactionHash } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const getStatus: Option = {
 	id: OptionId.txNearGetStatus,
-	label: 'Get status',
-	type: OptionType.SDK,
+	label: labels[OptionId.txNearGetStatus],
+	type: OptionType.sdk,
 	note: {
-		sdk: 'Get the status of a broadcasted transaction.',
+		sdk: notes[OptionId.txNearGetStatus],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async getTxStatus(transactionHash: string): Promise<NearTxStatus> */
-const status = await k.near.getTxStatus(hash);`,
+		sdk: usages[OptionId.txNearGetStatus],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.nearTransactionHash,
-				...transactionHash,
-				type: 'text',
+				...inputs[OptionInputId.nearTransactionHash],
+				required: true,
+			},
+			{
+				id: OptionInputId.nearStakePoolId,
+				...inputs[OptionInputId.nearStakePoolId],
 				required: true,
 			},
 		],

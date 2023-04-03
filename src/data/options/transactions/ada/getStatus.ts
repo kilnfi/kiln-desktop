@@ -1,25 +1,23 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { transactionHash } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const getStatus: Option = {
 	id: OptionId.txAdaGetStatus,
-	label: 'Get status',
-	type: OptionType.SDK,
+	label: labels[OptionId.txAdaGetStatus],
+	type: OptionType.sdk,
 	note: {
-		sdk: 'Get the status of a broadcasted transaction.',
+		sdk: notes[OptionId.txAdaGetStatus],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async getTxStatus(transactionHash: string): Promise<AdaTxStatus> */
-const status = await k.ada.getTxStatus(hash);`,
+		sdk: usages[OptionId.txAdaGetStatus],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.adaTransactionHash,
-				...transactionHash,
-				type: 'text',
+				...inputs[OptionInputId.adaTransactionHash],
 				required: true,
 			},
 		],

@@ -1,63 +1,43 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { accountId, amount, integration, noteSignAndBroadcast, options, walletAddress } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const stake: Option = {
 	id: OptionId.txAtomStake,
-	label: 'Stake',
-	type: OptionType.SDK,
+	label: labels[OptionId.txAtomStake],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First delegate your wallet balance in one transaction.
-
-${noteSignAndBroadcast('Cosmos Hub')}`,
+		sdk: notes[OptionId.txAtomStake],
 		api: undefined,
 	},
 	usage: {
-		sdk: `// optional, only for specific setups
-const options = {
-	// use an other validator than Kiln's
-	validatorAddress: '';
-};
-
-/* async craftStakeTx(accountId: string, walletAddress: string, amountAtom: number, options?: AtomStakeOptions): Promise<AtomTx> */
-const tx = await k.atom.craftStakeTx(account.id, WALLET_PUBKEY, 32.1, options);
-
-/* async sign(integration: string, transaction: AtomTx): Promise<TxRaw> */
-const signed = await k.atom.sign('vault-1', tx);
-
-/* async broadcast(transaction: TxRaw): Promise<string | undefined> */
-const hash = await k.atom.broadcast(signed);`,
+		sdk: usages[OptionId.txAtomStake],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.atomAccountId,
-				...accountId,
-				type: 'text',
+				...inputs[OptionInputId.atomAccountId],
 				required: true,
 			},
 			{
 				id: OptionInputId.atomWalletAddress,
-				...walletAddress('ATOM'),
-				type: 'text',
+				...inputs[OptionInputId.atomWalletAddress],
+				required: true,
+			},
+			{
+				id: OptionInputId.atomValidatorAddress,
+				...inputs[OptionInputId.atomValidatorAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.atomStakeAmount,
-				...amount('ATOM', 'stake'),
-				type: 'number',
+				...inputs[OptionInputId.atomStakeAmount],
 				required: true,
 			},
 			{
-				id: OptionInputId.atomOptions,
-				...options(["validatorAddress"]),
-				type: 'json',
-				required: false,
-			},
-			{
 				id: OptionInputId.atomIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.atomIntegration],
 				required: true,
 			},
 		],

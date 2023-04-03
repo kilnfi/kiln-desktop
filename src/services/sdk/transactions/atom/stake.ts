@@ -1,34 +1,27 @@
-import { setupSdk, searchInput, logInfo, logError, logSuccess } from '../../utils';
-
+import { setupSdk, searchInput, debugLog } from '../../utils';
 import { Sdk } from '../../../../types/sdk';
 import { Input } from '../../../../types/input';
 import { OptionInputId } from '../../../../types/option';
+import signAndBroadcast from './utils';
 
 const stake = async (sdk: Sdk, inputs: Input[]) => {
 	const k = setupSdk(sdk);
 
-	const accountId = searchInput(inputs, OptionInputId.atomAccountId) as string;
-	const walletAddress = searchInput(inputs, OptionInputId.atomWalletAddress) as string;
-	const amountAtom = searchInput(inputs, OptionInputId.atomStakeAmount) as number;
-	const options = JSON.parse((searchInput(inputs, OptionInputId.atomOptions) || '{}') as string);
-	const integration = searchInput(inputs, OptionInputId.atomIntegration) as string;
+	const params = {
+		accountId: searchInput(inputs, OptionInputId.atomAccountId) as string,
+		walletAddress: searchInput(inputs, OptionInputId.atomWalletAddress) as string,
+		amountAtom: searchInput(inputs, OptionInputId.atomStakeAmount) as number,
+		poolId: searchInput(inputs, OptionInputId.atomValidatorAddress) as string,
+		integration: searchInput(inputs, OptionInputId.atomIntegration) as string,
+	};
 
-	logInfo('>>> ATOM stake <<<');
-	logInfo(`Account ID: ${accountId}`);
-	logInfo(`Wallet Address: ${walletAddress}`);
-	logInfo(`Amount in ATOM: ${amountAtom}`);
-	logInfo(`Options: ${options}`);
-	logInfo(`Integration: ${integration}`);
+	debugLog('ATOM STAKE', params);
 
 	try {
-		const tx = await k.atom.craftStakeTx(accountId, walletAddress, amountAtom, options);
-		const signedTx = await k.atom.sign(integration, tx);
-		const hash = await k.atom.broadcast(signedTx);
-		logSuccess('>>> ATOM stake <<<');
-		console.log(hash);
+		const tx = await k.atom.craftStakeTx(params.accountId, params.walletAddress, params.poolId, params.amountAtom);
+		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
 		return JSON.stringify(hash, undefined, 4);
 	} catch (error) {
-		logError('>>> ATOM stake <<<');
 		console.error(error);
 		return error;
 	}

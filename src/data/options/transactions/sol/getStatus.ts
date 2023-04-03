@@ -1,25 +1,23 @@
 import { Option, OptionId, OptionInputId, OptionType, OptionFunctionSdk } from '../../../../types/option';
-import { transactionHash } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const getStatus: Option = {
 	id: OptionId.txSolGetStatus,
-	label: 'Get status',
-	type: OptionType.SDK,
+	label: labels[OptionId.txSolGetStatus],
+	type: OptionType.sdk,
 	note: {
-		sdk: 'Get the status of a broadcasted transaction.',
+		sdk: notes[OptionId.txSolGetStatus],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async getTxStatus(transactionHash: string): Promise<SolTxStatus> */
-const status = await k.sol.getTxStatus(hash);`,
+		sdk: usages[OptionId.txSolGetStatus],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.solTransactionHash,
-				...transactionHash,
-				type: 'text',
+				...inputs[OptionInputId.solTransactionHash],
 				required: true,
 			},
 		],

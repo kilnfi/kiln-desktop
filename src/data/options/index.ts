@@ -1,9 +1,7 @@
-import { Option, OptionId } from "../../types/option";
+import { Option, OptionId } from '../../types/option';
+import transactions from './transactions';
+import { labels } from './transactions/config';
 
-import transactions from "./transactions";
-
-const options: Option[] = [
-  { id: OptionId.tx, label: "craft transactions", subOptions: transactions },
-];
+const options: Option[] = [{ id: OptionId.tx, label: labels[OptionId.tx], subOptions: transactions }];
 
 export default options;

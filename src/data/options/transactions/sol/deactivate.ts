@@ -1,48 +1,36 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { walletAddress, integration, stakeAccountAddress, noteSignAndBroadcast } from '../common';
+import { inputs, labels, usages } from '../config';
 
 const deactivate: Option = {
 	id: OptionId.txSolDeactivate,
-	label: 'Deactivate',
-	type: OptionType.SDK,
+	label: labels[OptionId.txSolDeactivate],
+	type: OptionType.sdk,
 	note: {
-		sdk: `This is the first step of two to unstake a stake account on Solana.
-
-${noteSignAndBroadcast('Solana')}`,
+		sdk: labels[OptionId.txSolDeactivate],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftDeactivateStakeTx(stakeAccountAddress: string, walletAddress: string): Promise<SolanaTx> */
-const tx = await k.sol.craftDeactivateStakeTx(stakeAccountAddress, WALLET_PUBKEY);
-
-/* async sign(integration: string, transaction: SolanaTx, note?: string): Promise<SolanaTx> */
-const signed = await k.sol.sign('vault-1', tx);
-
-/* async broadcast(transaction: SolanaTx): Promise<string | undefined> */
-const hash = await k.sol.broadcast(signed);`,
+		sdk: usages[OptionId.txSolDeactivate],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
-      {
-        id: OptionInputId.solStakeAccountAddress,
-        ...stakeAccountAddress(),
-        type: 'text',
-        required: true,
-      },
-      {
-        id: OptionInputId.solWalletAddress,
-        ...walletAddress('SOL'),
-        type: 'text',
-        required: true
-      },
-      {
-				id: OptionInputId.solIntegration,
-				...integration,
-				type: 'text',
+			{
+				id: OptionInputId.solStakeAccountAddress,
+				...inputs[OptionInputId.solStakeAccountAddress],
 				required: true,
 			},
-    ],
+			{
+				id: OptionInputId.solWalletAddress,
+				...inputs[OptionInputId.solWalletAddress],
+				required: true,
+			},
+			{
+				id: OptionInputId.solIntegration,
+				...inputs[OptionInputId.solIntegration],
+				required: true,
+			},
+		],
 		api: undefined,
 	},
 	functions: {

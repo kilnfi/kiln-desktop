@@ -7,6 +7,7 @@ import Textarea from '../ui/Textarea';
 import useOptions from '../../hooks/useOptions';
 import useInputs from '../../hooks/useInputs';
 import ResultModal from '../modals/ResultModal';
+import { OptionInputType } from '../../types/option';
 
 const InputsForm = () => {
 	const [result, setResult] = useState<string | undefined>(undefined);
@@ -42,7 +43,7 @@ const InputsForm = () => {
 				} else if (input.required) {
 					const i = inputs.find((i) => i.id === input.id);
 					if (!i || !i.value || i.value === 'placeholder') return false;
-				} else if (input.type === 'json') {
+				} else if (input.type === OptionInputType.json) {
 					const i = inputs.find((i) => i.id === input.id);
 					if (i) return validJsonFormat(i.value as string);
 				}
@@ -84,7 +85,7 @@ const InputsForm = () => {
 									))}
 								</Select>
 							);
-						if (input.type === 'number')
+						if (input.type === OptionInputType.number)
 							return (
 								<Input
 									key={index.toString()}
@@ -98,7 +99,7 @@ const InputsForm = () => {
 									value={inputs.find((i) => i.id === input.id)?.value as number}
 								/>
 							);
-						if (input.type === 'text')
+						if (input.type === OptionInputType.text)
 							return (
 								<Input
 									key={index.toString()}
@@ -112,7 +113,7 @@ const InputsForm = () => {
 									value={(inputs.find((i) => i.id === input.id)?.value as string) || ''}
 								/>
 							);
-						if (input.type === 'text-array')
+						if (input.type === OptionInputType.textArray)
 							return (
 								<Textarea
 									key={index.toString()}
@@ -131,7 +132,7 @@ const InputsForm = () => {
 									value={(inputs.find((i) => i.id === input.id)?.value as string[])?.join(input.separator)}
 								/>
 							);
-						if (input.type === 'json')
+						if (input.type === OptionInputType.json)
 							return (
 								<Textarea
 									key={index.toString()}

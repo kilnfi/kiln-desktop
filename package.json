@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@kilnfi/sdk": "^1.4.5",
+    "@kilnfi/sdk": "^2.0.2",
     "@radix-ui/react-tooltip": "^1.0.3",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",

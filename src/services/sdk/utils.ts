@@ -4,11 +4,11 @@ import { Sdk } from '../../types/sdk';
 import { Input } from '../../types/input';
 import { OptionInputId } from '../../types/option';
 
-const setupSdk = (sdk: Sdk) => new Kiln(sdk);
+const setupSdk = (sdk: Sdk) => new Kiln({ testnet: sdk.testnet, apiToken: sdk.apiToken });
 const searchInput = (inputs: Input[], id: OptionInputId) => inputs.find((i) => i.id === id)?.value;
-const logInfo = (message: string) => console.log(`${new Date()} [INFO] ${message}`);
-const logSuccess = (message: string) => console.log(`${new Date()} [SUCCESS] ${message}`);
-const logWarning = (message: string) => console.log(`${new Date()} [WARNING] ${message}`);
-const logError = (message: string) => console.error(`${new Date()} [ERROR] ${message}`);
+const debugLog = (header: string, object: any) => {
+	console.log(header);
+	console.log(JSON.stringify(object, null, 4));
+};
 
-export { setupSdk, searchInput, logInfo, logSuccess, logWarning, logError };
+export { setupSdk, searchInput, debugLog };

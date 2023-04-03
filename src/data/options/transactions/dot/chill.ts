@@ -1,40 +1,28 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { controllerAccount, integration, noteSignAndBroadcast } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const chill: Option = {
 	id: OptionId.txDotChill,
-	label: 'Chill',
-	type: OptionType.SDK,
+	label: labels[OptionId.txDotChill],
+	type: OptionType.sdk,
 	note: {
-		sdk: `First, craft a dot chill transaction. I will chill the controller account associated to the given stash account, meaning that given account will not nominate any validator anymore.
-So you will stop earning rewards at the beginning of the next era.
-
-${noteSignAndBroadcast('Polkadot')}`,
+		sdk: notes[OptionId.txDotChill],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftChillTx(controllerAccount: string): Promise<DotTransaction> */
-const tx = await k.dot.craftChillTx(controllerAccount);
-
-/* async sign(integration: string, transaction: DotTransaction): Promise<SubmittableExtrinsic> */
-const signed = await k.dot.sign('vault-1', tx);
-
-/* async broadcast(transaction: SubmittableExtrinsic): Promise<SubmittedDotTransaction> */
-const hash = await k.dot.broadcast(signed);`,
+		sdk: usages[OptionId.txDotChill],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
-				id: OptionInputId.dotControllerAccount,
-				...controllerAccount,
-				type: 'text',
+				id: OptionInputId.dotControllerAccountAddress,
+				...inputs[OptionInputId.dotControllerAccountAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.dotIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.dotIntegration],
 				required: true,
 			},
 		],

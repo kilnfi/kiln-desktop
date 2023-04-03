@@ -1,51 +1,38 @@
 import { Option, OptionFunctionSdk, OptionId, OptionInputId, OptionType } from '../../../../types/option';
-import { walletAddress, integration, stakeAccountAddress, amount, accountId, noteSignAndBroadcast } from '../common';
+import { inputs, labels, notes, usages } from '../config';
 
 const merge: Option = {
 	id: OptionId.txSolMerge,
-	label: 'Merge',
-	type: OptionType.SDK,
+	label: labels[OptionId.txSolMerge],
+	type: OptionType.sdk,
 	note: {
-		sdk: `Merge one active Solana Stake Account to an other one in one transaction.
-
-${noteSignAndBroadcast('Solana')}`,
+		sdk: notes[OptionId.txSolMerge],
 		api: undefined,
 	},
 	usage: {
-		sdk: `/* async craftMergeStakeAccountsTx(stakeAccountSourceAddress: string, stakeAccountDestinationAddress: string, walletAddress: string): Promise<SolanaTx> */
-const tx = await k.sol.craftMergeStakeAccountsTx(stakeAccountSourceAddress, stakeAccountDestinationAddress, WALLET_PUBKEY);
-
-/* async sign(integration: string, transaction: SolanaTx, note?: string): Promise<SolanaTx> */
-const signed = await k.sol.sign('vault-1', tx);
-
-/* async broadcast(transaction: SolanaTx): Promise<string | undefined> */
-const hash = await k.sol.broadcast(signed);`,
+		sdk: usages[OptionId.txSolMerge],
 		api: undefined,
 	},
 	inputs: {
 		sdk: [
 			{
 				id: OptionInputId.solStakeAccountSourceAddress,
-				...stakeAccountAddress('Source'),
-				type: 'text',
+				...inputs[OptionInputId.solStakeAccountSourceAddress],
 				required: true,
 			},
-      {
+			{
 				id: OptionInputId.solStakeAccountDestinationAddress,
-				...stakeAccountAddress('Destination'),
-				type: 'text',
+				...inputs[OptionInputId.solStakeAccountDestinationAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.solWalletAddress,
-				...walletAddress('SOL'),
-				type: 'text',
+				...inputs[OptionInputId.solWalletAddress],
 				required: true,
 			},
 			{
 				id: OptionInputId.solIntegration,
-				...integration,
-				type: 'text',
+				...inputs[OptionInputId.solIntegration],
 				required: true,
 			},
 		],

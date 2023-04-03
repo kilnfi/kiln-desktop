@@ -3,7 +3,6 @@ import { SdkIntegration } from '../../types/sdk';
 
 import useInputs from '../../hooks/useInputs';
 import IntegrationCard from '../cards/IntegrationCard';
-import RpcsCard from '../cards/RpcsCard';
 import IntegrationModal from '../modals/IntegrationModal';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
@@ -18,7 +17,6 @@ const SdkForm = () => {
 		addIntegrationSdk,
 		updateIntegrationSdk,
 		removeIntegrationSdk,
-		updateRpcSdk,
 	} = useInputs();
 
 	const defaultIntegration: SdkIntegration = {
@@ -26,7 +24,7 @@ const SdkForm = () => {
 		provider: 'fireblocks',
 		fireblocksApiKey: '',
 		fireblocksSecretKey: '',
-		vaultAccountId: '',
+		vaultId: 0,
 	};
 	const [selectedIntegration, setSelectedIntegration] = useState<SdkIntegration>(defaultIntegration);
 	const isDefaultIntegration = () => JSON.stringify(selectedIntegration) === JSON.stringify(defaultIntegration);
@@ -107,12 +105,6 @@ const SdkForm = () => {
 					action={isDefaultIntegration() ? 'create' : 'update'}
 					defaultIntegration={selectedIntegration}
 				/>
-				<div>
-					<label htmlFor="RPC" className="text-caption-3">
-						RPC nodes
-					</label>
-					<RpcsCard rpcs={sdk.rpcs} onUpdate={updateRpcSdk} />
-				</div>
 			</div>
 		</div>
 	);
