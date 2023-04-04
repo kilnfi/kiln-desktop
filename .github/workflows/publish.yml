@@ -11,18 +11,54 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependencies
-        run: npm install
       - name: Retrieve certificate and decode it to a file
         env:
           SECTIGO_CERT_BASE64: ${{ secrets.SECTIGO_CERT_BASE64 }}
         run: |
           echo $SECTIGO_CERT_BASE64 | base64 --decode > sectigo_cert.p12
+      - name: Install dependencies
+        run: npm install
       - name: Publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SECTIGO_CERTIFICATE_PASSWORD: ${{ secrets.SECTIGO_CERT_PASSWORD }}
+        run: npm run publish
+
+  publish_on_macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Retrieve certificate and decode it to a file
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+        run: |
+          echo $CSC_LINK | base64 --decode > apple-cert.p12
+      - name: Add key to single keychain
+        env:
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+        run: |
+          security create-keychain -p password buildagent.keychain
+          security unlock-keychain -p password buildagent.keychain
+          security list-keychains -d user -s buildagent.keychain
+          security default-keychain -s buildagent.keychain
+          security import ./apple-cert.p12 -k buildagent.keychain -P $CSC_KEY_PASSWORD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k password buildagent.keychain
+      - name: Verify electron macos security identities
+        run: security find-identity -v
+      - name: Install dependencies
+        run: npm install
+      - name: Publish
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: npm run publish
