@@ -2,15 +2,13 @@ import { OptionInputType } from '../../../types/option';
 
 export const note = (instructions: string[]) => `${instructions.join('\n')}
 
-Then sign the transaction by specifying the integration and the crafted transaction.
-
-Finally, broadcast the signed transaction.`;
+Then sign the transaction and broadcast it.`;
 
 export const noteGetStatus = 'Get the transaction status of a broadcasted transaction.';
 
 export const usage = (
 	commands: string[],
-	token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz',
+	token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz' | 'matic',
 ) => `import { Integration } from "@kilnfi/sdk/lib/types/integrations";
 const fs = require('fs');
 const apiSecret = fs.readFileSync(__dirname + '/fireblocks_secret.key', 'utf8');
@@ -26,7 +24,7 @@ ${commands.join('\n')}
 const txSigned = await k.${token}.sign(vault, tx);
 const txHash = await k.${token}.broadcast(txSigned);`;
 
-export const usageGetStatus = (token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz', params?: string) =>
+export const usageGetStatus = (token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz' | 'matic', params?: string) =>
 	`const status = await k.${token}.getTxStatus(${params ? params : "'tx_hash'"});`;
 
 export const accountId = {
@@ -47,7 +45,9 @@ Copy-paste the 'PERMANENT ADDRESS'.`,
 });
 
 export const validatorAddress = (name: 'validator' | 'pool' | 'vote account' | 'baker', placeholder: string) => ({
-	label: `${name.charAt(0).toUpperCase() + name.slice(1)} ${name === 'validator' || name === 'baker' ? 'Address' : 'ID'}`,
+	label: `${name.charAt(0).toUpperCase() + name.slice(1)} ${
+		name === 'validator' || name === 'baker' ? 'Address' : 'ID'
+	}`,
 	details: `Address of the ${name}.
 To see Kiln's ${name}s, check our protocols documentation.
 One of them is ${placeholder}.`,

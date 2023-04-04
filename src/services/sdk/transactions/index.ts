@@ -4,6 +4,7 @@ import sol from './sol';
 import atom from './atom';
 import dot from './dot';
 import xtz from './xtz';
+import matic from './matic';
 
 const tx = {
 	ada,
@@ -12,6 +13,7 @@ const tx = {
 	atom,
 	dot,
 	xtz,
+	matic,
 };
 
 export default tx;

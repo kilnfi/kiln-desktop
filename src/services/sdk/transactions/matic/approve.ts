@@ -1,0 +1,30 @@
+import { setupSdk, searchInput, debugLog } from '../../utils';
+import { Sdk } from '../../../../types/sdk';
+import { Input } from '../../../../types/input';
+import { OptionInputId } from '../../../../types/option';
+import signAndBroadcast from './utils';
+
+const approve = async (sdk: Sdk, inputs: Input[]) => {
+	const k = setupSdk(sdk);
+
+	const amount = searchInput(inputs, OptionInputId.maticApproveAmount);
+	const params = {
+		walletAddress: searchInput(inputs, OptionInputId.maticWalletAddress) as string,
+		contractAddressToApprove: searchInput(inputs, OptionInputId.maticContractAddressToApprove) as string,
+		amountMatic: amount ? (amount as number) : undefined,
+		integration: searchInput(inputs, OptionInputId.maticIntegration) as string,
+	};
+
+	debugLog('MATIC APPROVE', params);
+
+	try {
+		const tx = await k.matic.craftApproveTx(params.walletAddress, params.contractAddressToApprove, params.amountMatic);
+		const hash = await signAndBroadcast(k, sdk.integrations, params.integration, tx);
+		return JSON.stringify(hash, undefined, 4);
+	} catch (error) {
+		console.error(error);
+		return error;
+	}
+};
+
+export default approve;
