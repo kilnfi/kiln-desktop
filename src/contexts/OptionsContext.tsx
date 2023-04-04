@@ -26,7 +26,7 @@ const OptionsContextProvider = ({ children }: Props) => {
 
 	const updatePreviousOption = (newOption: string, index: number) => {
 		if (newOption !== 'placeholder') {
-			let cpy = [...selectedOptions];
+			const cpy = [...selectedOptions];
 			cpy.splice(-cpy.length + index);
 			if (index === 0) {
 				cpy[index] = options.find((o) => o.id === newOption)!;
@@ -42,7 +42,7 @@ const OptionsContextProvider = ({ children }: Props) => {
 
 	const addNewOption = (newOption: string) => {
 		if (newOption !== 'placeholder') {
-			let cpy = [...selectedOptions];
+			const cpy = [...selectedOptions];
 			cpy.push(nextOptions.find((o) => o.id === newOption)!);
 			setSelectedOptions(cpy);
 			setLastSelectedOption(cpy.at(-1));
