@@ -33,6 +33,10 @@ export enum OptionId {
 	txDotSetPayee = 'tx-dot-set-payee',
 	txDotChill = 'tx-dot-chill',
 	txDotGetStatus = 'tx-dot-get-status',
+	txXtz = 'tx-xtz',
+	txXtzStake = 'tx-xtz-stake',
+	txXtzUnstake = 'tx-xtz-unstake',
+	txXtzGetStatus = 'tx-xtz-get-status',
 }
 
 export enum OptionInputId {
@@ -81,6 +85,12 @@ export enum OptionInputId {
 	dotBlockHash = 'dot-block-hash',
 	dotOptions = 'dot-options',
 	dotIntegration = 'dot-integration',
+	xtzAccountId = 'xtz-account-id',
+	xtzWalletAddress = 'xtz-wallet-address',
+	xtzBakerAddress = 'xtz-baker-address',
+	xtzBlockNumber = 'xtz-block-number',
+	xtzTransactionHash = 'xtz-transaction-hash',
+	xtzIntegration = 'xtz-integration',
 }
 
 export enum OptionFunctionSdk {
@@ -112,6 +122,9 @@ export enum OptionFunctionSdk {
 	txDotSetPayee = 'tx-dot-set-payee-sdk',
 	txDotChill = 'tx-dot-chill-sdk',
 	txDotGetStatus = 'tx-dot-get-status-sdk',
+	txXtzStake = 'tx-xtz-stake-sdk',
+	txXtzUnstake = 'tx-xtz-unstake-sdk',
+	txXtzGetStatus = 'tx-xtz-get-status-sdk',
 }
 
 export enum OptionFunctionApi {}
@@ -128,7 +141,7 @@ export enum OptionInputType {
 	text,
 	textArray,
 	json,
-};
+}
 
 export type OptionInput = {
 	id: OptionInputId;

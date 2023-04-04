@@ -1,10 +1,9 @@
-require('update-electron-app')()
-import electron, { app, BrowserWindow, ipcMain } from 'electron';
+require('update-electron-app')();
+import electron, { app, BrowserWindow, ipcMain, shell } from 'electron';
 
 import services from './services';
 import { Input } from './types/input';
 import { Sdk } from './types/sdk';
-import { shell } from 'electron';
 import { UtilFunction } from './types/util';
 import { OptionFunctionSdk } from './types/option';
 
@@ -43,6 +42,9 @@ const optionFunctions = [
 	{ name: OptionFunctionSdk.txDotSetController, func: services.sdk.tx.dot.setController },
 	{ name: OptionFunctionSdk.txDotSetPayee, func: services.sdk.tx.dot.setPayee },
 	{ name: OptionFunctionSdk.txDotGetStatus, func: services.sdk.tx.dot.getStatus },
+	{ name: OptionFunctionSdk.txXtzStake, func: services.sdk.tx.xtz.stake },
+	{ name: OptionFunctionSdk.txXtzUnstake, func: services.sdk.tx.xtz.unstake },
+	{ name: OptionFunctionSdk.txXtzGetStatus, func: services.sdk.tx.xtz.getStatus },
 ];
 
 optionFunctions.forEach((option) =>

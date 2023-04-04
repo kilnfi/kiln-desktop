@@ -6,12 +6,11 @@ Then sign the transaction by specifying the integration and the crafted transact
 
 Finally, broadcast the signed transaction.`;
 
-export const noteGetStatus =
-	'Get the transaction status of a broadcasted transaction by providing its transaction hash.';
+export const noteGetStatus = 'Get the transaction status of a broadcasted transaction.';
 
 export const usage = (
 	commands: string[],
-	token: 'ada' | 'atom' | 'dot' | 'near' | 'sol',
+	token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz',
 ) => `import { Integration } from "@kilnfi/sdk/lib/types/integrations";
 const fs = require('fs');
 const apiSecret = fs.readFileSync(__dirname + '/fireblocks_secret.key', 'utf8');
@@ -27,8 +26,8 @@ ${commands.join('\n')}
 const txSigned = await k.${token}.sign(vault, tx);
 const txHash = await k.${token}.broadcast(txSigned);`;
 
-export const usageGetStatus = (token: 'ada' | 'atom' | 'dot' | 'near' | 'sol') =>
-	`const status = await k.${token}.getTxStatus('tx_hash');`;
+export const usageGetStatus = (token: 'ada' | 'atom' | 'dot' | 'near' | 'sol' | 'xtz', params?: string) =>
+	`const status = await k.${token}.getTxStatus(${params ? params : "'tx_hash'"});`;
 
 export const accountId = {
 	label: 'Kiln Account ID',
@@ -47,8 +46,8 @@ Copy-paste the 'PERMANENT ADDRESS'.`,
 	type: OptionInputType.text,
 });
 
-export const validatorAddress = (name: 'validator' | 'pool' | 'vote account', placeholder: string) => ({
-	label: `${name.charAt(0).toUpperCase() + name.slice(1)} ${name !== 'validator' ? 'Address' : 'ID'}`,
+export const validatorAddress = (name: 'validator' | 'pool' | 'vote account' | 'baker', placeholder: string) => ({
+	label: `${name.charAt(0).toUpperCase() + name.slice(1)} ${name === 'validator' || name === 'baker' ? 'Address' : 'ID'}`,
 	details: `Address of the ${name}.
 To see Kiln's ${name}s, check our protocols documentation.
 One of them is ${placeholder}.`,

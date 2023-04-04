@@ -3,6 +3,7 @@ import near from './near';
 import sol from './sol';
 import atom from './atom';
 import dot from './dot';
+import xtz from './xtz';
 
 const tx = {
 	ada,
@@ -10,6 +11,7 @@ const tx = {
 	sol,
 	atom,
 	dot,
+	xtz,
 };
 
 export default tx;

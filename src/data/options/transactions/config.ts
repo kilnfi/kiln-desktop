@@ -1,5 +1,4 @@
-import { OptionId, OptionInputType } from '../../../types/option';
-import { OptionInputId } from '../../../types/option';
+import { OptionId, OptionInputType , OptionInputId } from '../../../types/option';
 import {
 	accountId,
 	amount,
@@ -52,6 +51,10 @@ export const labels: Record<OptionId, string> = {
 	[OptionId.txSolSplit]: 'Split stake',
 	[OptionId.txSolMerge]: 'Merge stakes',
 	[OptionId.txSolGetStatus]: 'Get transaction status',
+	[OptionId.txXtz]: 'on Tezos',
+	[OptionId.txXtzStake]: 'Stake',
+	[OptionId.txXtzUnstake]: 'Unstake',
+	[OptionId.txXtzGetStatus]: 'Get transaction status',
 };
 
 export const notes: Record<OptionId, string> = {
@@ -147,6 +150,13 @@ export const notes: Record<OptionId, string> = {
 		'First craft a merge stakes transaction. This allows you to merge two stakes into one on certain conditions.',
 	]),
 	[OptionId.txSolGetStatus]: noteGetStatus,
+	[OptionId.txXtz]: '',
+	[OptionId.txXtzStake]: note([
+		'First craft a delegation transaction to the baker address provided.',
+		'Note that a tezos delegation takes ~23 days before becoming active.',
+	]),
+	[OptionId.txXtzUnstake]: note(['First craft an undelegate transaction.']),
+	[OptionId.txXtzGetStatus]: noteGetStatus,
 };
 
 export const usages: Record<OptionId, string> = {
@@ -205,7 +215,7 @@ const options = {
 	),
 	[OptionId.txDotSetPayee]: usage(["const tx = await k.dot.craftSetPayeeTx('controller_account', 'Staked');"], 'dot'),
 	[OptionId.txDotChill]: usage(["const tx = await k.dot.craftChillTx('controller_account');"], 'dot'),
-	[OptionId.txDotGetStatus]: usageGetStatus('dot'),
+	[OptionId.txDotGetStatus]: usageGetStatus('dot', "'tx_hash', 'block_hash'"),
 	[OptionId.txNear]: '',
 	[OptionId.txNearStake]: usage(
 		["const tx = await k.near.craftStakeTx('account_id', 'wallet_address', 'pool_id', 1);"],
@@ -241,6 +251,10 @@ const options = {
 		'sol',
 	),
 	[OptionId.txSolGetStatus]: usageGetStatus('sol'),
+	[OptionId.txXtz]: '',
+	[OptionId.txXtzStake]: usage(["const tx = await k.xtz.craftStakeTx('account_id', 'wallet_address', 'baker_address');"], 'xtz'),
+	[OptionId.txXtzUnstake]: usage(["const tx = await k.xtz.craftUnstakeTx('wallet_address');"], 'xtz'),
+	[OptionId.txXtzGetStatus]: usageGetStatus('xtz', "blockNumber, 'tx_hash'"),
 };
 
 export const inputs: Record<
@@ -334,4 +348,15 @@ Enter the address of these validators separated by a new line.`,
 	[OptionInputId.solStakeAccountDestinationAddress]: stakeAccountAddress('Destination'),
 	[OptionInputId.solTransactionHash]: transactionHash,
 	[OptionInputId.solIntegration]: integration,
+	[OptionInputId.xtzAccountId]: accountId,
+	[OptionInputId.xtzWalletAddress]: walletAddress('XTZ'),
+	[OptionInputId.xtzBakerAddress]: validatorAddress('baker', 'tz3dKooaL9Av4UY15AUx9uRGL5H6YyqoGSPV'),
+	[OptionInputId.xtzBlockNumber]: {
+		label: 'Block Number',
+		placeholder: '1000000',
+		details: 'Block number in which the transaction was included.',
+		type: OptionInputType.number,
+	},
+	[OptionInputId.xtzTransactionHash]: transactionHash,
+	[OptionInputId.xtzIntegration]: integration,
 };

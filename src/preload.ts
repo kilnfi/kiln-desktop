@@ -63,6 +63,12 @@ contextBridge.exposeInMainWorld('services', {
 		ipcRenderer.invoke(OptionFunctionSdk.txDotSetPayee, sdk, inputs),
 	[OptionFunctionSdk.txDotGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
 		ipcRenderer.invoke(OptionFunctionSdk.txDotGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txXtzStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzStake, sdk, inputs),
+	[OptionFunctionSdk.txXtzUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzUnstake, sdk, inputs),
+	[OptionFunctionSdk.txXtzGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzGetStatus, sdk, inputs),
 });
 
 contextBridge.exposeInMainWorld('utils', {
