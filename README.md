@@ -9,20 +9,23 @@ A desktop app to use [Kiln Connect](https://docs.kiln.fi/v1/connect/overview-of-
 ✅ Tx crafting on Cardano\
 ✅ Tx crafting on Solana\
 ✅ Tx crafting on Cosmos Hub\
-❌ Tx crafting on Polygon (coming soon)\
-❌ Tx crafting on Tezos (coming soon)\
+✅ Tx crafting on Polygon\
+✅ Tx crafting on Tezos\
 ✅ Tx crafting on Polkadot\
-❌ Tx crafting on Ethereum (coming soon)
 
 ## How to download ?
 
 ### on Windows
 
-Go the [releases](https://github.com/kilnfi/kiln-desktop/releases) and download the lastest windows version.
+Go the [releases](https://github.com/kilnfi/kiln-desktop/releases) and download the lastest windows version (`.exe`).
 
 ### on MacOS
 
-We are waiting for an Apple certification...
+Go the [releases](https://github.com/kilnfi/kiln-desktop/releases) and download the lastest macOS version (`.dmg`).
+
+## How to upgrade ?
+
+If you downloaded a version higher or equal than `1.3.0`, then Kiln Desktop will automatically upgrade itself if an update is available.
 
 ## Give feedback :heart:
 
