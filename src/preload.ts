@@ -15,26 +15,6 @@ contextBridge.exposeInMainWorld('services', {
 		ipcRenderer.invoke(OptionFunctionSdk.txAdaWithdrawRewards, sdk, inputs),
 	[OptionFunctionSdk.txAdaGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
 		ipcRenderer.invoke(OptionFunctionSdk.txAdaGetStatus, sdk, inputs),
-	[OptionFunctionSdk.txNearStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txNearStake, sdk, inputs),
-	[OptionFunctionSdk.txNearUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txNearUnstake, sdk, inputs),
-	[OptionFunctionSdk.txNearWithdraw]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txNearWithdraw, sdk, inputs),
-	[OptionFunctionSdk.txNearGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txNearGetStatus, sdk, inputs),
-	[OptionFunctionSdk.txSolStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolStake, sdk, inputs),
-	[OptionFunctionSdk.txSolDeactivate]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolDeactivate, sdk, inputs),
-	[OptionFunctionSdk.txSolWithdraw]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolWithdraw, sdk, inputs),
-	[OptionFunctionSdk.txSolSplit]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolSplit, sdk, inputs),
-	[OptionFunctionSdk.txSolMerge]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolMerge, sdk, inputs),
-	[OptionFunctionSdk.txSolGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
-		ipcRenderer.invoke(OptionFunctionSdk.txSolGetStatus, sdk, inputs),
 	[OptionFunctionSdk.txAtomStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
 		ipcRenderer.invoke(OptionFunctionSdk.txAtomStake, sdk, inputs),
 	[OptionFunctionSdk.txAtomUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
@@ -63,6 +43,46 @@ contextBridge.exposeInMainWorld('services', {
 		ipcRenderer.invoke(OptionFunctionSdk.txDotSetPayee, sdk, inputs),
 	[OptionFunctionSdk.txDotGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
 		ipcRenderer.invoke(OptionFunctionSdk.txDotGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txMaticApprove]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticApprove, sdk, inputs),
+	[OptionFunctionSdk.txMaticBuyVoucher]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticBuyVoucher, sdk, inputs),
+	[OptionFunctionSdk.txMaticSellVoucher]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticSellVoucher, sdk, inputs),
+	[OptionFunctionSdk.txMaticWithdrawRewards]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticWithdrawRewards, sdk, inputs),
+	[OptionFunctionSdk.txMaticRestakeRewards]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticRestakeRewards, sdk, inputs),
+	[OptionFunctionSdk.txMaticUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticUnstake, sdk, inputs),
+	[OptionFunctionSdk.txMaticGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txMaticGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txNearStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txNearStake, sdk, inputs),
+	[OptionFunctionSdk.txNearUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txNearUnstake, sdk, inputs),
+	[OptionFunctionSdk.txNearWithdraw]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txNearWithdraw, sdk, inputs),
+	[OptionFunctionSdk.txNearGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txNearGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txSolStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolStake, sdk, inputs),
+	[OptionFunctionSdk.txSolDeactivate]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolDeactivate, sdk, inputs),
+	[OptionFunctionSdk.txSolWithdraw]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolWithdraw, sdk, inputs),
+	[OptionFunctionSdk.txSolSplit]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolSplit, sdk, inputs),
+	[OptionFunctionSdk.txSolMerge]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolMerge, sdk, inputs),
+	[OptionFunctionSdk.txSolGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txSolGetStatus, sdk, inputs),
+	[OptionFunctionSdk.txXtzStake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzStake, sdk, inputs),
+	[OptionFunctionSdk.txXtzUnstake]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzUnstake, sdk, inputs),
+	[OptionFunctionSdk.txXtzGetStatus]: async (sdk: Sdk, inputs: Input[]): Promise<any> =>
+		ipcRenderer.invoke(OptionFunctionSdk.txXtzGetStatus, sdk, inputs),
 });
 
 contextBridge.exposeInMainWorld('utils', {

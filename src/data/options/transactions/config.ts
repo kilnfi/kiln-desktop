@@ -1,5 +1,4 @@
-import { OptionId, OptionInputType } from '../../../types/option';
-import { OptionInputId } from '../../../types/option';
+import { OptionId, OptionInputType, OptionInputId } from '../../../types/option';
 import {
 	accountId,
 	amount,
@@ -40,6 +39,14 @@ export const labels: Record<OptionId, string> = {
 	[OptionId.txDotSetController]: 'Set Controller',
 	[OptionId.txDotSetPayee]: 'Set Payee',
 	[OptionId.txDotGetStatus]: 'Get transaction status',
+	[OptionId.txMatic]: 'on Polygon',
+	[OptionId.txMaticApprove]: 'Approve',
+	[OptionId.txMaticBuyVoucher]: 'Buy voucher',
+	[OptionId.txMaticSellVoucher]: 'Sell voucher',
+	[OptionId.txMaticWithdrawRewards]: 'Withdraw rewards',
+	[OptionId.txMaticRestakeRewards]: 'Restake rewards',
+	[OptionId.txMaticUnstake]: 'Unstake claim tokens',
+	[OptionId.txMaticGetStatus]: 'Get transaction status',
 	[OptionId.txNear]: 'on Near',
 	[OptionId.txNearStake]: 'Stake',
 	[OptionId.txNearUnstake]: 'Unstake',
@@ -52,6 +59,10 @@ export const labels: Record<OptionId, string> = {
 	[OptionId.txSolSplit]: 'Split stake',
 	[OptionId.txSolMerge]: 'Merge stakes',
 	[OptionId.txSolGetStatus]: 'Get transaction status',
+	[OptionId.txXtz]: 'on Tezos',
+	[OptionId.txXtzStake]: 'Stake',
+	[OptionId.txXtzUnstake]: 'Unstake',
+	[OptionId.txXtzGetStatus]: 'Get transaction status',
 };
 
 export const notes: Record<OptionId, string> = {
@@ -113,6 +124,34 @@ export const notes: Record<OptionId, string> = {
 		'This means that the controller account will stop nominate validators and you will stop earning rewards from the next era.',
 	]),
 	[OptionId.txDotGetStatus]: noteGetStatus,
+	[OptionId.txMatic]: '',
+	[OptionId.txMaticApprove]: note([
+		'First craft an approve transaction that allows a contract to spend an amount of ERC-20 MATIC.',
+		'This function is necessary prior to stake MATIC through a ValidatorShare proxy contract.',
+		'Users must first allow the MATIC StakeManager proxy contract to spend the amount that needs to be spent.',
+		'If no amount is specified, an infinite amount will be approved and this transaction will no longer be required before each staking transaction. That said, this is not recommended for security reasons.',
+	]),
+	[OptionId.txMaticBuyVoucher]: note([
+		'First craft a buy voucher transaction to exchange MATIC against validator shares.',
+		'It is done by doing a buyVoucher contract call to a ValidatorShare proxy contract of your desired validator.',
+		'This function also links your stake to your kiln account id.',
+	]),
+	[OptionId.txMaticSellVoucher]: note([
+		'First craft a sell voucher transaction to undound your staked MATIC.',
+		'It is done by doing a sellVoucher contract call to a ValidatorShare proxy contract.',
+		'Once done, your MATIC token enter the unbonding period of ~3/4 days (80 checkpoints).',
+	]),
+	[OptionId.txMaticWithdrawRewards]: note([
+		'First craft a withdraw rewards transaction to transfer your available rewards to your wallet.',
+	]),
+	[OptionId.txMaticRestakeRewards]: note([
+		'First craft a restake rewards transaction to convert your available rewards to staked MATIC.',
+		'This is how you can take advantage of auto-compounding by automating this process.',
+	]),
+	[OptionId.txMaticUnstake]: note([
+		'First craft an unstake transaction to transfer your unbonded tokens to your wallet.',
+	]),
+	[OptionId.txMaticGetStatus]: noteGetStatus,
 	[OptionId.txNear]: '',
 	[OptionId.txNearStake]: note(['First craft a stake transaction to the given pool id.']),
 	[OptionId.txNearUnstake]: note([
@@ -147,6 +186,13 @@ export const notes: Record<OptionId, string> = {
 		'First craft a merge stakes transaction. This allows you to merge two stakes into one on certain conditions.',
 	]),
 	[OptionId.txSolGetStatus]: noteGetStatus,
+	[OptionId.txXtz]: '',
+	[OptionId.txXtzStake]: note([
+		'First craft a delegation transaction to the baker address provided.',
+		'Note that a tezos delegation takes ~23 days before becoming active.',
+	]),
+	[OptionId.txXtzUnstake]: note(['First craft an undelegate transaction.']),
+	[OptionId.txXtzGetStatus]: noteGetStatus,
 };
 
 export const usages: Record<OptionId, string> = {
@@ -205,7 +251,33 @@ const options = {
 	),
 	[OptionId.txDotSetPayee]: usage(["const tx = await k.dot.craftSetPayeeTx('controller_account', 'Staked');"], 'dot'),
 	[OptionId.txDotChill]: usage(["const tx = await k.dot.craftChillTx('controller_account');"], 'dot'),
-	[OptionId.txDotGetStatus]: usageGetStatus('dot'),
+	[OptionId.txDotGetStatus]: usageGetStatus('dot', "'tx_hash', 'block_hash'"),
+	[OptionId.txMatic]: '',
+	[OptionId.txMaticApprove]: usage(
+		["const tx = await k.matic.craftApproveTx('wallet_address', 'stake_manager_proxy_address', 1);"],
+		'matic',
+	),
+	[OptionId.txMaticBuyVoucher]: usage(
+		["const tx = await k.matic.craftBuyVoucherTx('account_id', 'wallet_address', 'validator_share_proxy_address', 1);"],
+		'matic',
+	),
+	[OptionId.txMaticSellVoucher]: usage(
+		["const tx = await k.matic.craftSellVoucherTx('wallet_address', 'validator_share_proxy_address', 1);"],
+		'matic',
+	),
+	[OptionId.txMaticWithdrawRewards]: usage(
+		["const tx = await k.matic.craftWithdrawRewardsTx('wallet_address', 'validator_share_proxy_address');"],
+		'matic',
+	),
+	[OptionId.txMaticRestakeRewards]: usage(
+		["const tx = await k.matic.craftRestakeRewardsTx('wallet_address', 'validator_share_proxy_address');"],
+		'matic',
+	),
+	[OptionId.txMaticUnstake]: usage(
+		["const tx = await k.matic.craftUnstakeClaimTokensTx('wallet_address', 'validator_share_proxy_address');"],
+		'matic',
+	),
+	[OptionId.txMaticGetStatus]: usageGetStatus('matic'),
 	[OptionId.txNear]: '',
 	[OptionId.txNearStake]: usage(
 		["const tx = await k.near.craftStakeTx('account_id', 'wallet_address', 'pool_id', 1);"],
@@ -241,6 +313,13 @@ const options = {
 		'sol',
 	),
 	[OptionId.txSolGetStatus]: usageGetStatus('sol'),
+	[OptionId.txXtz]: '',
+	[OptionId.txXtzStake]: usage(
+		["const tx = await k.xtz.craftStakeTx('account_id', 'wallet_address', 'baker_address');"],
+		'xtz',
+	),
+	[OptionId.txXtzUnstake]: usage(["const tx = await k.xtz.craftUnstakeTx('wallet_address');"], 'xtz'),
+	[OptionId.txXtzGetStatus]: usageGetStatus('xtz', "blockNumber, 'tx_hash'"),
 };
 
 export const inputs: Record<
@@ -312,6 +391,32 @@ Enter the address of these validators separated by a new line.`,
 		type: OptionInputType.text,
 	},
 	[OptionInputId.dotIntegration]: integration,
+	[OptionInputId.maticAccountId]: accountId,
+	[OptionInputId.maticWalletAddress]: walletAddress('MATIC'),
+	[OptionInputId.maticContractAddressToApprove]: {
+		label: 'Contract Address to approve',
+		placeholder: 'xxx',
+		details: `Choose between the goerli and mainnet StakeManager proxy:
+goerli: 0x00200eA4Ee292E253E6Ca07dBA5EdC07c8Aa37A3
+mainnet: 0x5e3Ef299fDDf15eAa0432E6e66473ace8c13D908`,
+		type: OptionInputType.text,
+	},
+	[OptionInputId.maticValidatorShareProxyAddress]: {
+		label: 'ValidatorShare proxy address',
+		placeholder: '0xD14a87025109013B0a2354a775cB335F926Af65A',
+		details: `ValidatorShare proxy contract address of the validator.
+Kiln's one is 0xD14a87025109013B0a2354a775cB335F926Af65A. You can check our documentation.`,
+		type: OptionInputType.text,
+	},
+	[OptionInputId.maticApproveAmount]: amount(
+		'MATIC',
+		'If no amount is specified, an infinite amount will be approved and this transaction will no longer be required before each staking transaction. That said, this is not recommended for security reasons.',
+		false,
+	),
+	[OptionInputId.maticBuyVoucherAmount]: amount('MATIC'),
+	[OptionInputId.maticSellVoucherAmount]: amount('MATIC'),
+	[OptionInputId.maticTransactionHash]: transactionHash,
+	[OptionInputId.maticIntegration]: integration,
 	[OptionInputId.nearAccountId]: accountId,
 	[OptionInputId.nearWalletAddress]: walletAddress('NEAR'),
 	[OptionInputId.nearStakeAmount]: amount('NEAR'),
@@ -334,4 +439,15 @@ Enter the address of these validators separated by a new line.`,
 	[OptionInputId.solStakeAccountDestinationAddress]: stakeAccountAddress('Destination'),
 	[OptionInputId.solTransactionHash]: transactionHash,
 	[OptionInputId.solIntegration]: integration,
+	[OptionInputId.xtzAccountId]: accountId,
+	[OptionInputId.xtzWalletAddress]: walletAddress('XTZ'),
+	[OptionInputId.xtzBakerAddress]: validatorAddress('baker', 'tz3dKooaL9Av4UY15AUx9uRGL5H6YyqoGSPV'),
+	[OptionInputId.xtzBlockNumber]: {
+		label: 'Block Number',
+		placeholder: '1000000',
+		details: 'Block number in which the transaction was included.',
+		type: OptionInputType.number,
+	},
+	[OptionInputId.xtzTransactionHash]: transactionHash,
+	[OptionInputId.xtzIntegration]: integration,
 };
