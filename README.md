@@ -11,7 +11,7 @@ A desktop app to use [Kiln Connect](https://docs.kiln.fi/v1/connect/overview-of-
 ✅ Tx crafting on Cosmos Hub\
 ✅ Tx crafting on Polygon\
 ✅ Tx crafting on Tezos\
-✅ Tx crafting on Polkadot\
+✅ Tx crafting on Polkadot
 
 ## How to download ?
 
