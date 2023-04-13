@@ -83,10 +83,13 @@ export const notes: Record<OptionId, string> = {
 		'Craft a delegation transaction to the validator address provided.',
 		'It also links your stake to the kiln account id provided.',
 	]),
-	[OptionId.txAtomUnstake]: note(['First, craft an undelegate transaction.']),
+	[OptionId.txAtomUnstake]: note([
+		'First, craft an undelegate transaction.',
+		'Your stake then enters a 21 days unbonding period.',
+	]),
 	[OptionId.txAtomWithdrawRewards]: note([
 		'First craft a withdraw rewards transaction.',
-		'Note that rewards then enter the 21 days unbonding period.',
+		'Your available rewards are then transferred to your wallet instantaneously.',
 	]),
 	[OptionId.txAtomGetStatus]: noteGetStatus,
 	[OptionId.txDot]: '',
@@ -336,7 +339,10 @@ export const inputs: Record<
 	[OptionInputId.atomStakeAmount]: amount('ATOM'),
 	[OptionInputId.atomUnstakeAmount]: amount('ATOM', 'If empty, the whole stake will be unstaked.', false),
 	[OptionInputId.atomWalletAddress]: walletAddress('ATOM'),
-	[OptionInputId.atomValidatorAddress]: validatorAddress('validator', 'cosmosvaloper1uxlf7mvr8nep3gm7udf2u9remms2jyjqvwdul2'),
+	[OptionInputId.atomValidatorAddress]: validatorAddress(
+		'validator',
+		'cosmosvaloper1uxlf7mvr8nep3gm7udf2u9remms2jyjqvwdul2',
+	),
 	[OptionInputId.atomTransactionHash]: transactionHash,
 	[OptionInputId.atomIntegration]: integration,
 	[OptionInputId.dotAccountId]: accountId,
