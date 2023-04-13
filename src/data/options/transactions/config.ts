@@ -336,7 +336,7 @@ export const inputs: Record<
 	[OptionInputId.atomStakeAmount]: amount('ATOM'),
 	[OptionInputId.atomUnstakeAmount]: amount('ATOM', 'If empty, the whole stake will be unstaked.', false),
 	[OptionInputId.atomWalletAddress]: walletAddress('ATOM'),
-	[OptionInputId.atomValidatorAddress]: validatorAddress('validator', 'cosmos1uxlf7mvr8nep3gm7udf2u9remms2jyjqf6efne'),
+	[OptionInputId.atomValidatorAddress]: validatorAddress('validator', 'cosmosvaloper1uxlf7mvr8nep3gm7udf2u9remms2jyjqvwdul2'),
 	[OptionInputId.atomTransactionHash]: transactionHash,
 	[OptionInputId.atomIntegration]: integration,
 	[OptionInputId.dotAccountId]: accountId,
