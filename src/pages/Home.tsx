@@ -5,7 +5,7 @@ import UsageResults from '../components/results/UsageResults';
 import SdkForm from '../components/forms/SdkForm';
 import InputsForm from '../components/forms/InputsForm';
 import { KilnLogoShort } from '../components/Icons';
-// import ExecutionResult from '../components/results/ExecutionResult';
+import ClearCacheButton from '../components/buttons/ClearCacheButton';
 
 const Home = () => (
 	<OptionsContextProvider>
@@ -23,11 +23,11 @@ const Home = () => (
 					</div>
 					<OptionsForm />
 					<SdkForm />
+					<ClearCacheButton />
 				</div>
-				<div className="flex flex-col laptop:w-mid px-8 space-y-8 mb-16">
+				<div className="flex flex-col laptop:w-mid px-8 space-y-8 mb-16 mt-4">
 					<UsageResults />
 					<InputsForm />
-					{/* <ExecutionResult /> */}
 				</div>
 			</div>
 		</InputsContextProvider>

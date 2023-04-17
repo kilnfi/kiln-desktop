@@ -10,14 +10,14 @@ type Props = {
 type InputsContextType = {
 	sdk: Sdk;
 	inputs: Input[];
-	save: boolean;
-	setSave: (value: boolean) => void;
 	setTestnetSdk: (testnet: boolean) => void;
 	setApiTokenSdk: (apiToken: string) => void;
 	addIntegrationSdk: (integration: SdkIntegration) => void;
 	updateIntegrationSdk: (name: string, integration: SdkIntegration) => void;
 	removeIntegrationSdk: (name: string) => void;
 	updateInputs: (input: Input) => void;
+	clearSdk: () => void;
+	clearInputs: () => void;
 };
 
 const defaultSdk: Sdk = {
@@ -40,7 +40,9 @@ const InputsContextProvider = ({ children }: Props) => {
 
 	const [sdk, setSdk] = useState<Sdk>(loadSdk());
 	const [inputs, setInputs] = useState<Input[]>(loadInputs());
-	const [save, setSave] = useState<boolean>(true);
+
+	const clearSdk = () => setSdk(defaultSdk);
+	const clearInputs = () => setInputs([]);
 
 	const setTestnetSdk = (testnet: boolean) => setSdk({ ...sdk, testnet });
 	const setApiTokenSdk = (apiToken: string) => setSdk({ ...sdk, apiToken });
@@ -57,23 +59,13 @@ const InputsContextProvider = ({ children }: Props) => {
 
 	useEffect(() => {
 		// console.log(sdk);
-		if (save) saveSdk();
+		saveSdk();
 	}, [sdk]);
 
 	useEffect(() => {
 		// console.log(inputs);
-		if (save) saveInputs();
+		saveInputs();
 	}, [inputs]);
-
-	useEffect(() => {
-		if (save) {
-			saveSdk();
-			saveInputs();
-		} else {
-			localStorage.removeItem('sdk');
-			localStorage.removeItem('inputs');
-		}
-	}, [save]);
 
 	useEffect(() => {
 		setSdk(loadSdk());
@@ -85,14 +77,14 @@ const InputsContextProvider = ({ children }: Props) => {
 			value={{
 				sdk,
 				inputs,
-				save,
-				setSave,
 				setTestnetSdk,
 				setApiTokenSdk,
 				addIntegrationSdk,
 				updateIntegrationSdk,
 				removeIntegrationSdk,
 				updateInputs,
+				clearSdk,
+				clearInputs,
 			}}
 		>
 			{children}

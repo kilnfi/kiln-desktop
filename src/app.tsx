@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 import './styles/base.css';
-import Home from './pages/home';
+import Home from './pages/Home';
 
 const render = () => {
 	const container = document.getElementById('app');
