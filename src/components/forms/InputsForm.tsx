@@ -34,7 +34,7 @@ const InputsForm = () => {
 			if (!sdk.apiToken) return false;
 			return lastSelectedOption!.inputs?.sdk.every((input) => {
 				if (input.required && input.id.split('-').at(-1) === 'integration') {
-					const integration = inputs.find((i) => i.id.split('-').at(-1) === 'integration');
+					const integration = inputs.find((i) => i.id === input.id);
 					if (
 						!integration ||
 						(integration && !sdk.integrations.find((i) => i.name === integration.value)?.fireblocksSecretKey)
