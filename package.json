@@ -55,7 +55,7 @@
   "dependencies": {
     "@electron/osx-sign": "^1.0.4",
     "@headlessui/react": "^1.7.7",
-    "@kilnfi/sdk": "^2.0.2",
+    "@kilnfi/sdk": "^2.3.1",
     "@radix-ui/react-tooltip": "^1.0.3",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
