@@ -1,5 +1,6 @@
 # Kiln Desktop
-> 🚧 Early Access 🚧
+
+⚠️ Deprecated, please use [Kiln Dashboard](https://dashboard.kiln.fi/) in order to stake ⚠️
 
 A desktop app to use [Kiln Connect](https://docs.kiln.fi/v1/connect/overview-of-kiln-connect) 🚀
 
